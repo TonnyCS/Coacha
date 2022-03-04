@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		659577BE27D24EAA0003B40F /* CoachaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577BD27D24EAA0003B40F /* CoachaApp.swift */; };
-		659577C027D24EAA0003B40F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577BF27D24EAA0003B40F /* ContentView.swift */; };
+		659577C027D24EAA0003B40F /* SportActivityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577BF27D24EAA0003B40F /* SportActivityListView.swift */; };
 		659577C227D24EAB0003B40F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 659577C127D24EAB0003B40F /* Assets.xcassets */; };
 		659577C527D24EAB0003B40F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 659577C427D24EAB0003B40F /* Preview Assets.xcassets */; };
 		659577CD27D24ECE0003B40F /* CoachaAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577CC27D24ECE0003B40F /* CoachaAppModel.swift */; };
@@ -26,12 +26,25 @@
 		659577EC27D25D4B0003B40F /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577EB27D25D4B0003B40F /* AppRouter.swift */; };
 		659577EF27D25E150003B40F /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577EE27D25E150003B40F /* SplashView.swift */; };
 		659577F127D25E1E0003B40F /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577F027D25E1E0003B40F /* SplashViewModel.swift */; };
+		659577F727D269DD0003B40F /* SportActivityListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577F627D269DD0003B40F /* SportActivityListViewModel.swift */; };
+		659577FA27D26D550003B40F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 659577FC27D26D550003B40F /* Localizable.strings */; };
+		659577FF27D26EFA0003B40F /* CreateSportActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659577FE27D26EFA0003B40F /* CreateSportActivityView.swift */; };
+		6595780127D26F0E0003B40F /* CreateSportActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595780027D26F0E0003B40F /* CreateSportActivityViewModel.swift */; };
+		6595780727D284A10003B40F /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595780627D284A10003B40F /* DataStore.swift */; };
+		6595780A27D284E50003B40F /* SportActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595780927D284E50003B40F /* SportActivity.swift */; };
+		6595780C27D285CD0003B40F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595780B27D285CD0003B40F /* Constants.swift */; };
+		6595780E27D288250003B40F /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595780D27D288250003B40F /* SessionStore.swift */; };
+		6595781127D28D0F0003B40F /* CommonErrorHandlingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781027D28D0F0003B40F /* CommonErrorHandlingViewModel.swift */; };
+		6595781427D2A5440003B40F /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 6595781327D2A5440003B40F /* FirebaseFirestoreSwift-Beta */; };
+		6595781727D2A8C90003B40F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781627D2A8C90003B40F /* LoadingView.swift */; };
+		6595781927D2A9A60003B40F /* ErrorWithCustomMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781827D2A9A60003B40F /* ErrorWithCustomMessage.swift */; };
+		6595781B27D2AEAA0003B40F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781A27D2AEAA0003B40F /* Date+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		659577BA27D24EAA0003B40F /* Coacha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coacha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		659577BD27D24EAA0003B40F /* CoachaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachaApp.swift; sourceTree = "<group>"; };
-		659577BF27D24EAA0003B40F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		659577BF27D24EAA0003B40F /* SportActivityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivityListView.swift; sourceTree = "<group>"; };
 		659577C127D24EAB0003B40F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		659577C427D24EAB0003B40F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		659577CC27D24ECE0003B40F /* CoachaAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachaAppModel.swift; sourceTree = "<group>"; };
@@ -44,6 +57,18 @@
 		659577EB27D25D4B0003B40F /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		659577EE27D25E150003B40F /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		659577F027D25E1E0003B40F /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		659577F627D269DD0003B40F /* SportActivityListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivityListViewModel.swift; sourceTree = "<group>"; };
+		659577FB27D26D550003B40F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		659577FE27D26EFA0003B40F /* CreateSportActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSportActivityView.swift; sourceTree = "<group>"; };
+		6595780027D26F0E0003B40F /* CreateSportActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSportActivityViewModel.swift; sourceTree = "<group>"; };
+		6595780627D284A10003B40F /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		6595780927D284E50003B40F /* SportActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivity.swift; sourceTree = "<group>"; };
+		6595780B27D285CD0003B40F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6595780D27D288250003B40F /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		6595781027D28D0F0003B40F /* CommonErrorHandlingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonErrorHandlingViewModel.swift; sourceTree = "<group>"; };
+		6595781627D2A8C90003B40F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		6595781827D2A9A60003B40F /* ErrorWithCustomMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorWithCustomMessage.swift; sourceTree = "<group>"; };
+		6595781A27D2AEAA0003B40F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +79,7 @@
 				659577D727D250FE0003B40F /* FirebaseCrashlytics in Frameworks */,
 				659577D927D250FE0003B40F /* FirebaseFirestore in Frameworks */,
 				659577DB27D250FE0003B40F /* FirebasePerformance in Frameworks */,
+				6595781427D2A5440003B40F /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				659577D327D250FE0003B40F /* FirebaseAnalytics in Frameworks */,
 				659577D527D250FE0003B40F /* FirebaseAuth in Frameworks */,
 			);
@@ -67,6 +93,7 @@
 			children = (
 				659577BC27D24EAA0003B40F /* Coacha */,
 				659577BB27D24EAA0003B40F /* Products */,
+				6595781227D2A5440003B40F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,15 +109,17 @@
 			isa = PBXGroup;
 			children = (
 				659577CB27D24EBB0003B40F /* App */,
-				659577E827D25B7C0003B40F /* Login */,
+				659577F527D269A20003B40F /* View */,
 				659577DC27D254EF0003B40F /* Resources */,
 				659577E427D25B0E0003B40F /* Common */,
 				659577E127D2551A0003B40F /* Extensions */,
 				659577ED27D25D550003B40F /* Routers */,
 				659577CE27D250020003B40F /* Config */,
-				659577BF27D24EAA0003B40F /* ContentView.swift */,
+				6595780527D2848B0003B40F /* Utilities */,
+				6595780827D284BA0003B40F /* Model */,
 				659577C127D24EAB0003B40F /* Assets.xcassets */,
 				659577C327D24EAB0003B40F /* Preview Content */,
+				659577FC27D26D550003B40F /* Localizable.strings */,
 			);
 			path = Coacha;
 			sourceTree = "<group>";
@@ -125,6 +154,7 @@
 			children = (
 				659577DD27D255030003B40F /* Resources.swift */,
 				659577DF27D255100003B40F /* VIewModifiers.swift */,
+				6595780B27D285CD0003B40F /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -134,6 +164,7 @@
 			children = (
 				659577E227D255320003B40F /* String+.swift */,
 				659577E927D25BB60003B40F /* Image+.swift */,
+				6595781A27D2AEAA0003B40F /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +172,8 @@
 		659577E427D25B0E0003B40F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6595781527D2A8BD0003B40F /* View */,
+				6595780F27D28CF20003B40F /* ViewModel */,
 				659577E527D25B1A0003B40F /* ButtonStyle */,
 			);
 			path = Common;
@@ -187,6 +220,75 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		659577F427D269800003B40F /* SportActivityListView */ = {
+			isa = PBXGroup;
+			children = (
+				659577BF27D24EAA0003B40F /* SportActivityListView.swift */,
+				659577F627D269DD0003B40F /* SportActivityListViewModel.swift */,
+			);
+			path = SportActivityListView;
+			sourceTree = "<group>";
+		};
+		659577F527D269A20003B40F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				659577E827D25B7C0003B40F /* Login */,
+				659577F427D269800003B40F /* SportActivityListView */,
+				659577FD27D26ED80003B40F /* CreateSportActivityView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		659577FD27D26ED80003B40F /* CreateSportActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				659577FE27D26EFA0003B40F /* CreateSportActivityView.swift */,
+				6595780027D26F0E0003B40F /* CreateSportActivityViewModel.swift */,
+			);
+			path = CreateSportActivityView;
+			sourceTree = "<group>";
+		};
+		6595780527D2848B0003B40F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				6595780627D284A10003B40F /* DataStore.swift */,
+				6595780D27D288250003B40F /* SessionStore.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		6595780827D284BA0003B40F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6595780927D284E50003B40F /* SportActivity.swift */,
+				6595781827D2A9A60003B40F /* ErrorWithCustomMessage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6595780F27D28CF20003B40F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6595781027D28D0F0003B40F /* CommonErrorHandlingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6595781227D2A5440003B40F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6595781527D2A8BD0003B40F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6595781627D2A8C90003B40F /* LoadingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,6 +311,7 @@
 				659577D627D250FE0003B40F /* FirebaseCrashlytics */,
 				659577D827D250FE0003B40F /* FirebaseFirestore */,
 				659577DA27D250FE0003B40F /* FirebasePerformance */,
+				6595781327D2A5440003B40F /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = Coacha;
 			productReference = 659577BA27D24EAA0003B40F /* Coacha.app */;
@@ -256,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				659577C527D24EAB0003B40F /* Preview Assets.xcassets in Resources */,
+				659577FA27D26D550003B40F /* Localizable.strings in Resources */,
 				659577C227D24EAB0003B40F /* Assets.xcassets in Resources */,
 				659577D027D250130003B40F /* GoogleService-Info.plist in Resources */,
 			);
@@ -268,21 +372,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6595780127D26F0E0003B40F /* CreateSportActivityViewModel.swift in Sources */,
+				6595780C27D285CD0003B40F /* Constants.swift in Sources */,
+				659577F727D269DD0003B40F /* SportActivityListViewModel.swift in Sources */,
 				659577CD27D24ECE0003B40F /* CoachaAppModel.swift in Sources */,
+				6595781927D2A9A60003B40F /* ErrorWithCustomMessage.swift in Sources */,
 				659577E727D25B2D0003B40F /* ScaleableLinkStyle.swift in Sources */,
+				6595780A27D284E50003B40F /* SportActivity.swift in Sources */,
 				659577DE27D255030003B40F /* Resources.swift in Sources */,
-				659577C027D24EAA0003B40F /* ContentView.swift in Sources */,
+				659577C027D24EAA0003B40F /* SportActivityListView.swift in Sources */,
 				659577F127D25E1E0003B40F /* SplashViewModel.swift in Sources */,
 				659577BE27D24EAA0003B40F /* CoachaApp.swift in Sources */,
+				6595781B27D2AEAA0003B40F /* Date+.swift in Sources */,
 				659577EC27D25D4B0003B40F /* AppRouter.swift in Sources */,
 				659577EA27D25BB60003B40F /* Image+.swift in Sources */,
 				659577EF27D25E150003B40F /* SplashView.swift in Sources */,
+				6595781727D2A8C90003B40F /* LoadingView.swift in Sources */,
+				659577FF27D26EFA0003B40F /* CreateSportActivityView.swift in Sources */,
+				6595780E27D288250003B40F /* SessionStore.swift in Sources */,
 				659577E327D255320003B40F /* String+.swift in Sources */,
+				6595780727D284A10003B40F /* DataStore.swift in Sources */,
+				6595781127D28D0F0003B40F /* CommonErrorHandlingViewModel.swift in Sources */,
 				659577E027D255100003B40F /* VIewModifiers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		659577FC27D26D550003B40F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				659577FB27D26D550003B40F /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		659577C627D24EAB0003B40F /* Debug */ = {
@@ -412,9 +538,9 @@
 				DEVELOPMENT_TEAM = FRGC7GVJ5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Coacha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -441,9 +567,9 @@
 				DEVELOPMENT_TEAM = FRGC7GVJ5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Coacha/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -518,6 +644,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 659577D127D250FE0003B40F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebasePerformance;
+		};
+		6595781327D2A5440003B40F /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 659577D127D250FE0003B40F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

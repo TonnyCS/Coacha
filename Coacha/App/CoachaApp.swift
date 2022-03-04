@@ -9,18 +9,25 @@ import SwiftUI
 
 @main
 struct CoachaApp: App {
-    @StateObject var appModel: CoachaAppModel = CoachaAppModel()
     @StateObject var appRouter: AppRouter = AppRouter()
+    
+    @StateObject var appModel: CoachaAppModel = CoachaAppModel()
+    
+    @StateObject var sportActivityListViewModel: SportActivityListViewModel = SportActivityListViewModel()
+    @StateObject var splashViewModel: SplashViewModel = SplashViewModel()
     
     var body: some Scene {
         WindowGroup {
             ZStack {
                 switch self.appRouter.currentPage {
                     case .main:
-                        ContentView()
+                        SportActivityListView(viewModel: self.sportActivityListViewModel)
+                            .onAppear { self.appModel.dataStore.getAllSportActivity() }
+                            .environmentObject(self.appModel.dataStore)
                     default:
-                        SplashView(viewModel: SplashViewModel())
+                        SplashView(viewModel: self.splashViewModel)
                             .environmentObject(self.appRouter)
+                            .environmentObject(self.appModel.sessionStore)
                 }
             }
             .transition(.opacity)

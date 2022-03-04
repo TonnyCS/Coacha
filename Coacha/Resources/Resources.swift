@@ -25,7 +25,7 @@ enum Resources {
         
         enum shadow {
             /// BLACK_16% | HEX: #000000 O: 16%
-            static let black016 = Color("Perm_White")
+            static let black016 = Color("ShadowBlack016")
         }
         
         /// WHITE  | L: HEX: #FFFFFF | D: HEX: #000000
@@ -69,5 +69,11 @@ enum Resources {
         static let regular13 = Font.system(size: 13, weight: .regular, design: .default)
         static let regular12 = Font.system(size: 12, weight: .regular, design: .default)
         static let regular10 = Font.system(size: 10, weight: .regular, design: .default)
+    }
+    
+    enum image {
+        enum apple {
+            static let plus = Image(systemName: "plus")
+        }
     }
 }

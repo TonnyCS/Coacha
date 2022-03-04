@@ -9,7 +9,13 @@ import SwiftUI
 import Firebase
 
 final class CoachaAppModel: ObservableObject {
+    @ObservedObject var sessionStore: SessionStore
+    @ObservedObject var dataStore: DataStore
+    
     init() {
         FirebaseApp.configure()
+        
+        self.sessionStore = SessionStore()
+        self.dataStore = DataStore()
     }
 }
