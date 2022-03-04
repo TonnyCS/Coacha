@@ -39,6 +39,9 @@ struct CreateSportActivityView: View {
             .toolbar {
                 self.toolbarButtons
             }
+            .confirmationDialog("Kam uložit", isPresented: self.$viewModel.showingConfirmationSheet) {
+                self.confirmationButtons
+            }
         }
         .onAppear {
             self.viewModel.dataStore = self.dataStore
@@ -52,14 +55,25 @@ struct CreateSportActivityView: View {
     
     private var toolbarButtons: some View {
         Button(action: {
-//            self.viewModel.createNewSportActivity()
-            LocalStore.shared.add()
+            self.viewModel.showConfirmationSheet()
         }) {
             Text("Smazat ne")
                 .medium14(self.viewModel.saveButtonDisabled ? R.color.martini : R.color.cinnabar)
         }
         .scaleableLinkStyle()
         .disabled(self.viewModel.saveButtonDisabled)
+    }
+    
+    private var confirmationButtons: some View {
+        Group {
+            Button("Local") {
+                self.viewModel.createLocalSportActivity()
+            }
+            
+            Button("Remote") {
+                self.viewModel.createRemoteSportActivity()
+            }
+        }
     }
 }
 

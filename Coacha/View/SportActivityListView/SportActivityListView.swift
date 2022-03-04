@@ -25,8 +25,8 @@ struct SportActivityListView: View {
                         .pickerStyle(.segmented)
                         
                         
-                        ForEach(self.viewModel.allSportActivity) { sportActivity in
-                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: false))
+                        ForEach(self.viewModel.getArray()) { sportActivity in
+                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: sportActivity.isLocal))
                         }
                     }
                     .padding(.all, 16)
@@ -42,6 +42,9 @@ struct SportActivityListView: View {
             .sheet(isPresented: self.$viewModel.showingNewSportActivityView) {
                 CreateSportActivityView(viewModel: CreateSportActivityViewModel())
             }
+        }
+        .onAppear {
+            self.viewModel.dataStore = self.dataStore
         }
     }
     

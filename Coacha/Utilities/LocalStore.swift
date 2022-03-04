@@ -38,9 +38,9 @@ class LocalStore: NSObject, ObservableObject {
         }
     }
     
-    func add() {
+    func add(name: String, place: String, duration: Int) {
         let newSportActivityCD = SportActivityCD(context: PersistenceController.shared.container.viewContext)
-        newSportActivityCD.sportActivity = SportActivity(name: "TEST_CD", place: "PLACE_CD", duration: 69)
+        newSportActivityCD.sportActivity = SportActivity(name: name, place: place, duration: duration, isLocal: true)
         
         do {
             try PersistenceController.shared.container.viewContext.save()

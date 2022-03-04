@@ -23,6 +23,7 @@ enum Constants {
                 static let place: String = "place"
                 static let duration: String = "duration"
                 static let date: String = "date"
+                static let isLocal: String = "isLocal"
             }
         }
     }

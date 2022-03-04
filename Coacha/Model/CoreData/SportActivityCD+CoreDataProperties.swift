@@ -30,7 +30,7 @@ extension SportActivityCD {
             date = newValue.date
         }
         get {
-            SportActivity(id: self.id, name: self.name, place: self.place, duration: Int(self.duration), date: self.date)
+            SportActivity(id: self.id, name: self.name, place: self.place, duration: Int(self.duration), date: self.date, isLocal: true)
         }
     }
 
