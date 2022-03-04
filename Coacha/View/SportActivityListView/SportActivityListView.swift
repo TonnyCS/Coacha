@@ -27,7 +27,7 @@ struct SportActivityListView: View {
                 ScrollView {
                     VStack(spacing: 16) {
                         ForEach(self.dataStore.allSportActivity) { sportActivity in
-                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date))
+                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: false))
                         }
                     }
                     .padding(.all, 16)
@@ -54,41 +54,6 @@ struct SportActivityListView: View {
                 .foregroundColor(R.color.cinnabar)
         }
         .scaleableLinkStyle()
-    }
-}
-
-struct SportActivityItemView: View {
-    @StateObject var viewModel: SportActivityItemViewModel
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(self.viewModel.name)
-                    .semibold16()
-                
-                Text(self.viewModel.place)
-                    .regular10(R.color.martini)
-            }
-                
-            Spacer()
-            
-            Text(self.viewModel.date)
-                .regular12(R.color.martini)
-        }
-        .padding(.all, 8)
-        .commonBackground()
-    }
-}
-
-final class SportActivityItemViewModel: ObservableObject {
-    let name: String
-    let place: String
-    let date: String
-    
-    init(name: String, place: String, date: Date) {
-        self.name = name
-        self.place = place
-        self.date = "\(date.get(.day)).\(date.get(.month)).\(date.get(.year))"
     }
 }
 
