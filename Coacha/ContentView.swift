@@ -9,8 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            ScrollView {
+                VStack {
+                    Text("MainView")
+                }
+            }
+            .zStackBackground(R.color.white)
+            .navigationBarTitle("MainView")
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
