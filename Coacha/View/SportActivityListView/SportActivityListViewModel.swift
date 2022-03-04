@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 enum StorageType: Int {
     case local
@@ -14,7 +15,18 @@ enum StorageType: Int {
 }
 
 final class SportActivityListViewModel: ObservableObject {
-    @Published var storageType: StorageType = .all //TODO
+    private var cancellable: AnyCancellable?
     
+    @Published var storageType: StorageType = .all //TODO
     @Published var showingNewSportActivityView: Bool = false
+    
+    @Published var allSportActivity: [SportActivityCD] = []
+    
+    init() {
+        let sportActivityPublisher = LocalStore.shared.allSportActivity.eraseToAnyPublisher()
+        cancellable = sportActivityPublisher
+            .sink(receiveValue: { allSportActivity in
+                self.allSportActivity = allSportActivity
+            })
+    }
 }

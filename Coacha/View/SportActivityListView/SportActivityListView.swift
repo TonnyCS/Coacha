@@ -15,18 +15,17 @@ struct SportActivityListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("StorageSelection", selection: self.$viewModel.storageType) {
-                    Text("All").tag(StorageType.all)
-                    Text("Local").tag(StorageType.local)
-                    Text("Remote").tag(StorageType.remote)
-                }
-                .pickerStyle(.segmented)
-                .padding(.all, 16)
-                
-                
                 ScrollView {
                     VStack(spacing: 16) {
-                        ForEach(self.dataStore.allSportActivity) { sportActivity in
+                        Picker("StorageSelection", selection: self.$viewModel.storageType) {
+                            Text("All").tag(StorageType.all)
+                            Text("Local").tag(StorageType.local)
+                            Text("Remote").tag(StorageType.remote)
+                        }
+                        .pickerStyle(.segmented)
+                        
+                        
+                        ForEach(self.viewModel.allSportActivity) { sportActivity in
                             SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: false))
                         }
                     }

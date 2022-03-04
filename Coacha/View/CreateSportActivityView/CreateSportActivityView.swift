@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateSportActivityView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var dataStore: DataStore
     
     @StateObject var viewModel: CreateSportActivityViewModel
@@ -52,7 +52,8 @@ struct CreateSportActivityView: View {
     
     private var toolbarButtons: some View {
         Button(action: {
-            self.viewModel.createNewSportActivity()
+//            self.viewModel.createNewSportActivity()
+            LocalStore.shared.add()
         }) {
             Text("Smazat ne")
                 .medium14(self.viewModel.saveButtonDisabled ? R.color.martini : R.color.cinnabar)

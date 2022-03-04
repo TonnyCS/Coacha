@@ -30,7 +30,7 @@ struct SportActivityItemView: View {
     }
 }
 
-struct SportActivityItemView_Previews: PreviewProvider {
+fileprivate struct SportActivityItemView_Previews: PreviewProvider {
     static var previews: some View {
         SportActivityItemView(viewModel: SportActivityItemViewModel(name: "TEST", place: "PLACE", date: Date(), isLocal: false))
     }

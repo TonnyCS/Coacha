@@ -41,6 +41,11 @@
 		6595781B27D2AEAA0003B40F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781A27D2AEAA0003B40F /* Date+.swift */; };
 		6595781E27D2B4AD0003B40F /* SportActivityItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781D27D2B4AD0003B40F /* SportActivityItemView.swift */; };
 		6595782027D2B4D20003B40F /* SportActivityItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595781F27D2B4D20003B40F /* SportActivityItemViewModel.swift */; };
+		6595782327D2B74C0003B40F /* Coacha.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6595782127D2B74C0003B40F /* Coacha.xcdatamodeld */; };
+		6595782527D2B75E0003B40F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595782427D2B75E0003B40F /* Persistence.swift */; };
+		6595782827D2BB560003B40F /* SportActivityCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595782627D2BB560003B40F /* SportActivityCD+CoreDataClass.swift */; };
+		6595782927D2BB560003B40F /* SportActivityCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595782727D2BB560003B40F /* SportActivityCD+CoreDataProperties.swift */; };
+		6595782C27D2C9340003B40F /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595782B27D2C9340003B40F /* LocalStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +78,11 @@
 		6595781A27D2AEAA0003B40F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6595781D27D2B4AD0003B40F /* SportActivityItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivityItemView.swift; sourceTree = "<group>"; };
 		6595781F27D2B4D20003B40F /* SportActivityItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivityItemViewModel.swift; sourceTree = "<group>"; };
+		6595782227D2B74C0003B40F /* SportActivity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportActivity.xcdatamodel; sourceTree = "<group>"; };
+		6595782427D2B75E0003B40F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		6595782627D2BB560003B40F /* SportActivityCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SportActivityCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6595782727D2BB560003B40F /* SportActivityCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SportActivityCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6595782B27D2C9340003B40F /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +134,7 @@
 				659577C127D24EAB0003B40F /* Assets.xcassets */,
 				659577C327D24EAB0003B40F /* Preview Content */,
 				659577FC27D26D550003B40F /* Localizable.strings */,
+				6595782127D2B74C0003B40F /* Coacha.xcdatamodeld */,
 			);
 			path = Coacha;
 			sourceTree = "<group>";
@@ -258,6 +269,8 @@
 			children = (
 				6595780627D284A10003B40F /* DataStore.swift */,
 				6595780D27D288250003B40F /* SessionStore.swift */,
+				6595782427D2B75E0003B40F /* Persistence.swift */,
+				6595782B27D2C9340003B40F /* LocalStore.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -265,6 +278,7 @@
 		6595780827D284BA0003B40F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6595782A27D2BB6C0003B40F /* CoreData */,
 				6595780927D284E50003B40F /* SportActivity.swift */,
 				6595781827D2A9A60003B40F /* ErrorWithCustomMessage.swift */,
 			);
@@ -301,6 +315,15 @@
 				6595781F27D2B4D20003B40F /* SportActivityItemViewModel.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		6595782A27D2BB6C0003B40F /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6595782627D2BB560003B40F /* SportActivityCD+CoreDataClass.swift */,
+				6595782727D2BB560003B40F /* SportActivityCD+CoreDataProperties.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,12 +409,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6595782827D2BB560003B40F /* SportActivityCD+CoreDataClass.swift in Sources */,
 				6595780127D26F0E0003B40F /* CreateSportActivityViewModel.swift in Sources */,
 				6595780C27D285CD0003B40F /* Constants.swift in Sources */,
+				6595782C27D2C9340003B40F /* LocalStore.swift in Sources */,
+				6595782327D2B74C0003B40F /* Coacha.xcdatamodeld in Sources */,
 				659577F727D269DD0003B40F /* SportActivityListViewModel.swift in Sources */,
 				659577CD27D24ECE0003B40F /* CoachaAppModel.swift in Sources */,
+				6595782927D2BB560003B40F /* SportActivityCD+CoreDataProperties.swift in Sources */,
 				6595781927D2A9A60003B40F /* ErrorWithCustomMessage.swift in Sources */,
 				659577E727D25B2D0003B40F /* ScaleableLinkStyle.swift in Sources */,
+				6595782527D2B75E0003B40F /* Persistence.swift in Sources */,
 				6595782027D2B4D20003B40F /* SportActivityItemViewModel.swift in Sources */,
 				6595780A27D284E50003B40F /* SportActivity.swift in Sources */,
 				659577DE27D255030003B40F /* Resources.swift in Sources */,
@@ -667,6 +695,19 @@
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		6595782127D2B74C0003B40F /* Coacha.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6595782227D2B74C0003B40F /* SportActivity.xcdatamodel */,
+			);
+			currentVersion = 6595782227D2B74C0003B40F /* SportActivity.xcdatamodel */;
+			path = Coacha.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 659577B227D24EAA0003B40F /* Project object */;
 }
