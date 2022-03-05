@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-struct DateDuration {
-    var value: Int
-    var unit: Unit
-    
-    enum Unit: String, CaseIterable {
-        case minutes, hours
-    }
-}
-
 struct CreateSportActivityView: View {
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var dataStore: DataStore

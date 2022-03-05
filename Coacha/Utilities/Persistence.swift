@@ -18,7 +18,8 @@ struct PersistenceController {
             newItem.id = UUID()
             newItem.name = "Test_Context"
             newItem.place = "Test_Context"
-            newItem.duration = 99
+            newItem.durationValue = 25
+            newItem.durationUnit = "minutes"
             newItem.date = Date()
         }
         do {

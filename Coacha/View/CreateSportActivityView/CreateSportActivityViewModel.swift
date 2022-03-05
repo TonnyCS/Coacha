@@ -24,7 +24,14 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     func createRemoteSportActivity() {
         self.showLoading()
         
-        self.dataStore.putSportActivity(sportActivity: SportActivity(name: self.name, place: self.place?.place.name ?? "N/A", duration: self.duration.value, isLocal: false)) { error in
+        self.dataStore.putSportActivity(
+            sportActivity: SportActivity(
+                name: self.name,
+                place: self.place?.place.name ?? "N/A",
+                duration: self.duration,
+                isLocal: false
+            )
+        ) { error in
             if let error = error {
                 self.dismissLoading()
                 self.showError(error: error)
@@ -35,7 +42,15 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     }
     
     func createLocalSportActivity() { //TODO
-        LocalStore.shared.add(sportActivity: SportActivity(name: self.name, place: self.place?.place.name ?? "N/A", duration: self.duration.value, isLocal: true))
+        LocalStore.shared.add(
+            sportActivity: SportActivity(
+                name: self.name,
+                place: self.place?.place.name ?? "N/A",
+                duration: self.duration,
+                isLocal: true
+            )
+        )
+        
         self.dismissView()
     }
     

@@ -51,6 +51,7 @@
 		6595783527D3B10E0003B40F /* SearchLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595783427D3B10E0003B40F /* SearchLocationView.swift */; };
 		6595783727D3B11B0003B40F /* SearchLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595783627D3B11B0003B40F /* SearchLocationViewModel.swift */; };
 		6595783927D3B8BE0003B40F /* FlatLinkStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595783827D3B8BE0003B40F /* FlatLinkStyle.swift */; };
+		6595783B27D3CDE30003B40F /* DateDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595783A27D3CDE30003B40F /* DateDuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +94,7 @@
 		6595783427D3B10E0003B40F /* SearchLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationView.swift; sourceTree = "<group>"; };
 		6595783627D3B11B0003B40F /* SearchLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewModel.swift; sourceTree = "<group>"; };
 		6595783827D3B8BE0003B40F /* FlatLinkStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatLinkStyle.swift; sourceTree = "<group>"; };
+		6595783A27D3CDE30003B40F /* DateDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +297,7 @@
 				6595780927D284E50003B40F /* SportActivity.swift */,
 				6595781827D2A9A60003B40F /* ErrorWithCustomMessage.swift */,
 				6595783127D3A79C0003B40F /* Place.swift */,
+				6595783A27D3CDE30003B40F /* DateDuration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				6595780E27D288250003B40F /* SessionStore.swift in Sources */,
 				659577E327D255320003B40F /* String+.swift in Sources */,
 				6595780727D284A10003B40F /* DataStore.swift in Sources */,
+				6595783B27D3CDE30003B40F /* DateDuration.swift in Sources */,
 				6595781127D28D0F0003B40F /* CommonErrorHandlingViewModel.swift in Sources */,
 				6595783527D3B10E0003B40F /* SearchLocationView.swift in Sources */,
 				6595781E27D2B4AD0003B40F /* SportActivityItemView.swift in Sources */,
