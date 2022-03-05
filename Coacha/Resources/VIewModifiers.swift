@@ -10,7 +10,6 @@ import SwiftUI
 extension View {
     // MARK: - COMMON
     func toSquare(side: CGFloat) -> some View { frame(width: side, height: side) }
-    func scaleableLinkStyle() -> some View { buttonStyle(ScaleableLinkStyle()) }
     
     // MARK: - BACKGROUNDS
     /// Encloses content into a ZStack with a selected color underneath
@@ -20,7 +19,7 @@ extension View {
     ///     Radius: 1
     ///     X: 0
     ///     Y: 3
-    func commonBackground(_ color: Color = R.color.white, _ cornerRadius: CGFloat = 10, shadowColor: Color? = R.color.shadow.black016, shadowRadius: CGFloat = 6, shadowX: CGFloat = 0, shadowY: CGFloat = 3) -> some View { modifier(CommonBackground(color: color, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: shadowRadius, shadowX: shadowX, shadowY: shadowY)) }
+    func commonBackground(_ color: Color = R.color.white, _ cornerRadius: CGFloat = 8, shadowColor: Color? = R.color.shadow.black016, shadowRadius: CGFloat = 6, shadowX: CGFloat = 0, shadowY: CGFloat = 3) -> some View { modifier(CommonBackground(color: color, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: shadowRadius, shadowX: shadowX, shadowY: shadowY)) }
     
     // MARK: - FONTS
     func bold34(_ color: Color = R.color.codGray) -> some View { modifier(Bold34(color: color)) }
@@ -29,12 +28,17 @@ extension View {
     func semibold16(_ color: Color = R.color.codGray) -> some View { modifier(Semibold16(color: color)) }
     func semibold14(_ color: Color = R.color.codGray) -> some View { modifier(Semibold14(color: color)) }
     
+    func medium17(_ color: Color = R.color.codGray) -> some View { modifier(Medium17(color: color)) }
     func medium14(_ color: Color = R.color.codGray) -> some View { modifier(Medium14(color: color)) }
     
     func regular14(_ color: Color = R.color.codGray) -> some View { modifier(Regular14(color: color)) }
     func regular13(_ color: Color = R.color.codGray) -> some View { modifier(Regular13(color: color)) }
     func regular12(_ color: Color = R.color.codGray) -> some View { modifier(Regular12(color: color)) }
     func regular10(_ color: Color = R.color.codGray) -> some View { modifier(Regular10(color: color)) }
+    
+    // MARK: - BUTTON_STYLES
+    func scaleableLinkStyle() -> some View { buttonStyle(ScaleableLinkStyle()) }
+    func flatLinkStyle() -> some View { buttonStyle(FlatLinkStyle()) }
 }
 
 // MARK: - VIEW_MODIFIERS
@@ -112,6 +116,15 @@ fileprivate struct Semibold14: ViewModifier {
 }
 
 // MARK: - MEDIUM
+fileprivate struct Medium17: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content
+            .font(R.font.medium17)
+            .foregroundColor(color)
+    }
+}
+
 fileprivate struct Medium14: ViewModifier {
     let color: Color
     func body(content: Content) -> some View {

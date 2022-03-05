@@ -62,6 +62,7 @@ enum Resources {
         static let semibold14 = Font.system(size: 14, weight: .semibold, design: .default)
         
         // MARK: - MEDIUM
+        static let medium17 = Font.system(size: 17, weight: .medium, design: .default)
         static let medium14 = Font.system(size: 14, weight: .medium, design: .default)
         
         // MARK: - REGULAR
@@ -75,6 +76,7 @@ enum Resources {
         enum apple {
             static let plus = Image(systemName: "plus")
             static let trash = Image(systemName: "trash")
+            static let chevronRight = Image(systemName: "chevron.right")
             
             enum fill {
                 static let flag2Crossed = Image(systemName: "flag.2.crossed.fill")

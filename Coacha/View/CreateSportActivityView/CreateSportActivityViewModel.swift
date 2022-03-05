@@ -13,20 +13,18 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     @ObservedObject var dataStore: DataStore = DataStore()
     
     @Published var name: String = "" { didSet { self.checkForSaveButtonDisable() } }
-    @Published var place: String = "" { didSet { self.checkForSaveButtonDisable() } }
-    @Published var duration: Int = 0 { didSet { self.checkForSaveButtonDisable() } }
+    @Published var place: Place? { didSet { self.checkForSaveButtonDisable() } }
+    @Published var duration: DateDuration = DateDuration(value: 0, unit: .minutes) { didSet { self.checkForSaveButtonDisable() } }
     
     @Published var saveButtonDisabled: Bool = true
-    @Published var showingConfirmationSheet: Bool = false
     
-    func showConfirmationSheet() {
-        self.showingConfirmationSheet = true
-    }
+    @Published var showingConfirmationSheet: Bool = false
+    @Published var showingLocationSheet: Bool = false
     
     func createRemoteSportActivity() {
         self.showLoading()
         
-        self.dataStore.putSportActivity(sportActivity: SportActivity(name: self.name, place: self.place, duration: self.duration, isLocal: false)) { error in
+        self.dataStore.putSportActivity(sportActivity: SportActivity(name: self.name, place: self.place?.place.name ?? "N/A", duration: self.duration.value, isLocal: false)) { error in
             if let error = error {
                 self.dismissLoading()
                 self.showError(error: error)
@@ -37,16 +35,24 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     }
     
     func createLocalSportActivity() { //TODO
-        LocalStore.shared.add(name: self.name, place: self.place, duration: self.duration)
+        LocalStore.shared.add(sportActivity: SportActivity(name: self.name, place: self.place?.place.name ?? "N/A", duration: self.duration.value, isLocal: true))
         self.dismissView()
     }
     
     // MARK: - UI
     private func checkForSaveButtonDisable() {
-        self.saveButtonDisabled = self.name.isEmpty || self.place.isEmpty || self.duration == 0
+        self.saveButtonDisabled = self.name.isEmpty || self.place == nil || self.duration.value == 0
     }
     
-    private func dismissView() {
+    func showConfirmationSheet() {
+        self.showingConfirmationSheet = true
+    }
+    
+    func showLocationSheet() {
+        self.showingLocationSheet = true
+    }
+    
+    func dismissView() {
         self.viewDismissalModePublished.send(true)
     }
 }

@@ -11,11 +11,13 @@ import Firebase
 final class CoachaAppModel: ObservableObject {
     @ObservedObject var sessionStore: SessionStore
     @ObservedObject var dataStore: DataStore
+    @ObservedObject var mapHelper: MapHelper
     
     init() {
         FirebaseApp.configure()
         
         self.sessionStore = SessionStore()
         self.dataStore = DataStore()
+        self.mapHelper = MapHelper()
     }
 }
