@@ -14,7 +14,7 @@ enum StorageType: Int {
     case all
 }
 
-final class SportActivityListViewModel: ObservableObject {
+final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     private var cancellable: AnyCancellable?
     @ObservedObject var dataStore: DataStore = DataStore()
     
@@ -23,7 +23,9 @@ final class SportActivityListViewModel: ObservableObject {
     
     @Published var allSportActivity: [SportActivity] = []
     
-    init() {
+    override init() {
+        super.init()
+        
         let sportActivityPublisher = LocalStore.shared.allSportActivity.eraseToAnyPublisher()
         
         cancellable = sportActivityPublisher
@@ -46,5 +48,17 @@ final class SportActivityListViewModel: ObservableObject {
         
         let sortedArray = array.sorted(by: { $0.date > $1.date })
         return sortedArray
+    }
+    
+    func deleteSportActivity(id: UUID, isLocal: Bool) {
+        if isLocal {
+            LocalStore.shared.delete(id: id)
+        } else {
+            self.dataStore.deleteSportActivity(id: id) { error in
+                if let error = error {
+                    self.showError(error: error)
+                }
+            }
+        }
     }
 }

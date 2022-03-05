@@ -15,22 +15,34 @@ struct SportActivityListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
+//                ScrollView {
                     VStack(spacing: 16) {
-                        Picker("StorageSelection", selection: self.$viewModel.storageType) {
-                            Text("All").tag(StorageType.all)
-                            Text("Local").tag(StorageType.local)
-                            Text("Remote").tag(StorageType.remote)
-                        }
-                        .pickerStyle(.segmented)
                         
                         
-                        ForEach(self.viewModel.getArray()) { sportActivity in
-                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: sportActivity.isLocal))
+                        List {
+                            Picker("StorageSelection", selection: self.$viewModel.storageType) {
+                                Text("All").tag(StorageType.all)
+                                Text("Local").tag(StorageType.local)
+                                Text("Remote").tag(StorageType.remote)
+                            }
+                            .pickerStyle(.segmented)
+                            
+                            ForEach(self.viewModel.getArray()) { sportActivity in
+                                SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: sportActivity.isLocal))
+                                    .swipeActions(edge: .trailing) {
+                                        Button(action: {
+                                            self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
+                                        }) {
+                                            Text("delete")
+                                        }
+                                        .tint(R.color.cinnabar)
+                                    }
+                            }
                         }
+                        .listStyle(PlainListStyle())
                     }
                     .padding(.all, 16)
-                }
+//                }
             }
             .zStackBackground(R.color.white)
             
@@ -43,6 +55,10 @@ struct SportActivityListView: View {
                 CreateSportActivityView(viewModel: CreateSportActivityViewModel())
             }
         }
+        .alert(isPresented: self.$viewModel.showingAlert) {
+            Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
+        }
+        
         .onAppear {
             self.viewModel.dataStore = self.dataStore
         }

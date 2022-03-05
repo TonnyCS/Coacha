@@ -42,21 +42,32 @@ class LocalStore: NSObject, ObservableObject {
         let newSportActivityCD = SportActivityCD(context: PersistenceController.shared.container.viewContext)
         newSportActivityCD.sportActivity = SportActivity(name: name, place: place, duration: duration, isLocal: true)
         
-        do {
-            try PersistenceController.shared.container.viewContext.save()
-            debugPrint(">>> SAVED")
-        } catch {
-            debugPrint(">>> ERROR: \(error.localizedDescription)")
-        }
+        self.saveContext()
     }
     
 //    func update(withID: id: UUID) {
 //
 //    }
 //
-//    func delete(id: UUID) {
-//
-//    }
+    func delete(id: UUID) {
+        guard let saToBeRemoved = allSportActivity.value.first(where: { $0.id == id }) else {
+            debugPrint("LOCAL_STORAGE/delete: Error: ID Not found")
+            return
+        }
+        
+        PersistenceController.shared.container.viewContext.delete(saToBeRemoved)
+        
+        self.saveContext()
+    }
+    
+    private func saveContext() {
+        do {
+            try PersistenceController.shared.container.viewContext.save()
+            debugPrint("LOCAL_STORAGE/saveContext: Success")
+        } catch {
+            debugPrint("LOCAL_STORAGE/saveContext: Error: \(error.localizedDescription)")
+        }
+    }
 }
 
 extension LocalStore: NSFetchedResultsControllerDelegate {

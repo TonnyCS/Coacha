@@ -70,4 +70,27 @@ class DataStore: ObservableObject {
             completion(error)
         }
     }
+    
+    // MARK: - REMOVE
+    func deleteSportActivity(id: UUID, completion: @escaping (_ error: Error?) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            debugPrint("DATA_STORE/deleteSportActivity: Error: No userID")
+            return
+        }
+        
+        self.db
+            .collection(C.dataStore.collection.profile)
+            .document(userID)
+            .collection(C.dataStore.collection.sportActivity)
+            .document(id.uuidString)
+            .delete() { error in
+                if let error = error {
+                    debugPrint("DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
+                    completion(error)
+                } else {
+                    debugPrint("DATA_STORE/putSportActivity: Success")
+                    completion(nil)
+                }
+            }
+    }
 }
