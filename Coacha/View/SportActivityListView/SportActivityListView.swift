@@ -15,34 +15,21 @@ struct SportActivityListView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                ScrollView {
+                ScrollView {
                     VStack(spacing: 16) {
-                        
-                        
-                        List {
-                            Picker("StorageSelection", selection: self.$viewModel.storageType) {
-                                Text("All").tag(StorageType.all)
-                                Text("Local").tag(StorageType.local)
-                                Text("Remote").tag(StorageType.remote)
-                            }
-                            .pickerStyle(.segmented)
-                            
-                            ForEach(self.viewModel.getArray()) { sportActivity in
-                                SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: sportActivity.isLocal))
-                                    .swipeActions(edge: .trailing) {
-                                        Button(action: {
-                                            self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
-                                        }) {
-                                            Text("delete")
-                                        }
-                                        .tint(R.color.cinnabar)
-                                    }
-                            }
+                        Picker("StorageSelection", selection: self.$viewModel.storageType) {
+                            Text("All").tag(StorageType.all)
+                            Text("Local").tag(StorageType.local)
+                            Text("Remote").tag(StorageType.remote)
                         }
-                        .listStyle(PlainListStyle())
+                        .pickerStyle(.segmented)
+                        
+                        ForEach(self.viewModel.getArray()) { sportActivity in
+                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: sportActivity.isLocal, removeAction: { self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal) }))
+                        }
                     }
                     .padding(.all, 16)
-//                }
+                }
             }
             .zStackBackground(R.color.white)
             

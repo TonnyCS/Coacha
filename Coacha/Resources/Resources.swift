@@ -74,6 +74,7 @@ enum Resources {
     enum image {
         enum apple {
             static let plus = Image(systemName: "plus")
+            static let trash = Image(systemName: "trash")
             
             enum fill {
                 static let flag2Crossed = Image(systemName: "flag.2.crossed.fill")
