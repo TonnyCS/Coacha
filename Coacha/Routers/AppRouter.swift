@@ -10,8 +10,7 @@ import SwiftUI
 final class AppRouter: ObservableObject {
     enum Page: Int {
         case main
-//        case login
-//        case registration
+        case login
         case splash
     }
     

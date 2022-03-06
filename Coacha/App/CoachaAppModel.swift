@@ -19,5 +19,19 @@ final class CoachaAppModel: ObservableObject {
         self.sessionStore = SessionStore()
         self.dataStore = DataStore()
         self.mapHelper = MapHelper()
+        
+        self.checkForFirstTimeStartup()
+    }
+    
+    private func checkForFirstTimeStartup() {
+        if !UD.shared.hasRunBefore {
+            self.sessionStore.signOut { error in
+                if let error = error {
+                    debugPrint("APP_MODEL/checkForFirstTimeStartup: Error: \(error.localizedDescription)")
+                }
+                
+                UD.shared.hasRunBefore = true
+            }
+        }
     }
 }

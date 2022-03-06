@@ -52,21 +52,27 @@ struct SportActivityItemView: View {
     
     private var cell: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text(self.viewModel.name)
-                    .semibold16()
+                    .medium17()
                 
                 Text(self.viewModel.place)
-                    .regular10(R.color.martini)
+                    .regular14(R.color.martini)
             }
-                
+            
             Spacer()
             
-            Text(self.viewModel.date)
-                .regular12(R.color.martini)
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(self.viewModel.date)
+                    .regular12(R.color.martini)
+                
+                Text(self.viewModel.durationString)
+                    .regular12(R.color.martini)
+            }
         }
-        .padding(.all, 8)
-        .commonBackground(self.viewModel.backgroundColor)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .commonBackground()
     }
     
     private func onChanged(value: DragGesture.Value) {
@@ -94,6 +100,6 @@ struct SportActivityItemView: View {
 
 fileprivate struct SportActivityItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SportActivityItemView(viewModel: SportActivityItemViewModel(name: "TEST", place: "PLACE", date: Date(), isLocal: false, removeAction: {}))
+        SportActivityItemView(viewModel: SportActivityItemViewModel(name: "TEST", place: "PLACE", date: Date(), duration: DateDuration(value: 1, unit: .minutes), isLocal: false, removeAction: {}))
     }
 }

@@ -40,4 +40,15 @@ class SessionStore: ObservableObject {
             completion(user, nil)
         }
     }
+    
+    func signOut(completion: @escaping (_ error: Error?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            debugPrint("SESSION_STORE/OUT: Success")
+            completion(nil)
+        } catch let nsError as NSError {
+            debugPrint("SESSION_STORE/OUT: Error: \(nsError.localizedDescription)")
+            completion(nsError)
+        }
+    }
 }

@@ -37,12 +37,8 @@ class DataStore: ObservableObject {
                     return
                 }
                 
-                self.allSportActivity = documents.map({ (queryDocumentSnapshot) -> SportActivity in
-                    let data = queryDocumentSnapshot.data()
-                    
-                    let sportActivity = SportActivity(data: data)
-                    
-                    return sportActivity
+                self.allSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> SportActivity? in
+                    return try? queryDocumentSnapshot.data(as: SportActivity.self)
                 })
             }
     }

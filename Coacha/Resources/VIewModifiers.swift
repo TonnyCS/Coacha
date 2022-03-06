@@ -141,7 +141,7 @@ fileprivate struct Regular14: ViewModifier {
         content
             .font(R.font.regular14)
             .foregroundColor(color)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(.leading)
     }
 }
 
@@ -151,7 +151,7 @@ fileprivate struct Regular13: ViewModifier {
         content
             .font(R.font.regular13)
             .foregroundColor(color)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(.leading)
     }
 }
 
@@ -161,7 +161,7 @@ fileprivate struct Regular12: ViewModifier {
         content
             .font(R.font.regular12)
             .foregroundColor(color)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(.leading)
     }
 }
 
@@ -171,7 +171,7 @@ fileprivate struct Regular10: ViewModifier {
         content
             .font(R.font.regular10)
             .foregroundColor(color)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(.leading)
     }
 }
 

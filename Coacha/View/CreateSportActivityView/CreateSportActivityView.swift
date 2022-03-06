@@ -57,9 +57,7 @@ struct CreateSportActivityView: View {
             }
             
             .navigationBarTitle("CreateView")
-            .toolbar {
-                self.toolbarButtons
-            }
+            .toolbar { self.toolbarButtons }
             
             .confirmationDialog("Kam uložit", isPresented: self.$viewModel.showingConfirmationSheet) {
                 self.confirmationButtons
@@ -112,76 +110,6 @@ struct CreateSportActivityView: View {
                 self.viewModel.createRemoteSportActivity()
             }
         }
-    }
-}
-
-struct InteractableItemRow: View {
-    let title: String
-    let trailingCaption: String?
-
-    let action: Action
-
-    init(
-        title: String,
-        trailingCaption: String? = nil,
-        action: @escaping Action
-    ) {
-        self.title = title
-        self.trailingCaption = trailingCaption
-        self.action = action
-    }
-
-    var body: some View {
-        Button(action: self.action) {
-            HStack(spacing: 8) {
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .medium17(R.color.martini)
-                }
-
-                Spacer()
-
-                if let trailingCaption = trailingCaption {
-                    Text(trailingCaption)
-                        .medium17()
-                }
-
-                R.image.apple.chevronRight
-                    .toFitFrame(side: 11)
-                    .foregroundColor(R.color.martini)
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .commonBackground()
-        }
-        .scaleableLinkStyle()
-    }
-}
-
-struct NonExpandableItemRow<Content: View>: View {
-    let title: String
-    let content: Content
-    
-    init(
-        title: String,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.title = title
-        self.content = content()
-    }
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .medium17(R.color.martini)
-            
-            Spacer()
-            
-            content
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .commonBackground()
     }
 }
 

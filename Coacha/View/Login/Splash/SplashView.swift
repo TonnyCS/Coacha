@@ -8,27 +8,25 @@
 import SwiftUI
 
 struct SplashView: View {
-    @EnvironmentObject var sessionStore: SessionStore
     @EnvironmentObject var appRouter: AppRouter
+    @EnvironmentObject var sessionStore: SessionStore
+    @Namespace private var animation
     
     @StateObject var viewModel: SplashViewModel
     
     var body: some View {
         VStack {
-            if self.viewModel.showingLoading {
-                LoadingView(color: R.color.perm.white)
-            } else {
-                Button(action: self.viewModel.login) {
-                    Text("Login")
-                        .medium14(R.color.white)
-                }
+            switch self.appRouter.currentPage {
+                case .splash:
+                    SplashView_Content(animation: self.animation)
+                case .login:
+                    LoginView(animation: self.animation, viewModel: LoginViewModel())
+                default:
+                    LoadingView(color: R.color.perm.white)
+                        .zStackBackground(R.color.cinnabar)
             }
         }
         .zStackBackground(R.color.cinnabar)
-        
-        .alert(isPresented: self.$viewModel.showingAlert) {
-            Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
-        }
         
         .onAppear {
             self.viewModel.appRouter = self.appRouter
@@ -39,9 +37,22 @@ struct SplashView: View {
     }
 }
 
+fileprivate struct SplashView_Content: View {
+    let animation: Namespace.ID
+    
+    var body: some View {
+        R.image.apple.fill.flag2Crossed
+            .toFitFrame(side: 70)
+            .foregroundColor(R.color.perm.white)
+            .matchedGeometryEffect(id: C.matchedGeometry.onboardingLogo, in: self.animation)
+            .zStackBackground(R.color.cinnabar)
+    }
+}
+
 fileprivate struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView(viewModel: SplashViewModel())
             .environmentObject(AppRouter())
+            .environmentObject(SessionStore())
     }
 }

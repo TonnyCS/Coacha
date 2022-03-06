@@ -13,7 +13,8 @@ final class SportActivityItemViewModel: ObservableObject {
     let name: String
     let place: String
     let date: String
-    let backgroundColor: Color
+    let durationString: String
+    let storageType: String
     let removeAction: Action
     
     @Published var showingRemoveAlert: Bool = false
@@ -22,11 +23,12 @@ final class SportActivityItemViewModel: ObservableObject {
     @Published var swipeOffset: CGFloat = 0
     @Published var lastSwipeOffset: CGFloat = 0
     
-    init(name: String, place: String, date: Date, isLocal: Bool, removeAction: @escaping Action) {
+    init(name: String, place: String, date: Date, duration: DateDuration, isLocal: Bool, removeAction: @escaping Action) {
         self.name = name
         self.place = place
         self.date = "\(date.get(.day)).\(date.get(.month)).\(date.get(.year))"
-        self.backgroundColor = isLocal ? R.color.cinnabar : R.color.white
+        self.durationString = "\(duration.value) \(duration.unit.rawValue)"
+        self.storageType = isLocal ? "Local" : "Remote"
         self.removeAction = removeAction
     }
     

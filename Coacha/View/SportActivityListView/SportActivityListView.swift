@@ -25,7 +25,17 @@ struct SportActivityListView: View {
                         .pickerStyle(.segmented)
                         
                         ForEach(self.viewModel.getArray()) { sportActivity in
-                            SportActivityItemView(viewModel: SportActivityItemViewModel(name: sportActivity.name, place: sportActivity.place, date: sportActivity.date, isLocal: sportActivity.isLocal, removeAction: { self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal) }))
+                            SportActivityItemView(
+                                viewModel: SportActivityItemViewModel(
+                                    name: sportActivity.name,
+                                    place: sportActivity.place,
+                                    date: sportActivity.date,
+                                    duration: sportActivity.duration,
+                                    isLocal: sportActivity.isLocal
+                                ){
+                                    self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
+                                }
+                            )
                         }
                     }
                     .padding(.all, 16)
@@ -34,9 +44,7 @@ struct SportActivityListView: View {
             .zStackBackground(R.color.white)
             
             .navigationBarTitle("MainView")
-            .toolbar {
-                self.toolbarButtons
-            }
+            .toolbar { self.toolbarButtons }
             
             .sheet(isPresented: self.$viewModel.showingNewSportActivityView) {
                 CreateSportActivityView(viewModel: CreateSportActivityViewModel())
@@ -51,14 +59,15 @@ struct SportActivityListView: View {
         }
     }
     
-    private var toolbarButtons: some View {
-        Button(action: {
-            self.viewModel.showingNewSportActivityView = true
-        }) {
-            R.image.apple.plus
-                .foregroundColor(R.color.cinnabar)
+    private var toolbarButtons: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: {
+                self.viewModel.showingNewSportActivityView = true
+            }) {
+                R.image.apple.plus
+                    .foregroundColor(R.color.cinnabar)
+            }
         }
-        .scaleableLinkStyle()
     }
 }
 

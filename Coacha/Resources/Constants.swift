@@ -10,6 +10,11 @@ import Foundation
 typealias C = Constants
 
 enum Constants {
+    enum app {
+        static let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "APP_VERSION_ERROR"
+        static let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "BUILD_VERSION_ERROR"
+    }
+    
     enum dataStore {
         enum collection {
             static let profile: String = "profile"
@@ -26,5 +31,9 @@ enum Constants {
                 static let isLocal: String = "isLocal"
             }
         }
+    }
+    
+    enum matchedGeometry {
+        static let onboardingLogo: String = "OnboardingLogo"
     }
 }

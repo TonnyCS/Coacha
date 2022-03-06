@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class SplashViewModel: CommonErrorHandlingViewModel {
+final class SplashViewModel: ObservableObject {
     @ObservedObject var appRouter: AppRouter = AppRouter()
     @ObservedObject var sessionStore: SessionStore = SessionStore()
     
@@ -15,26 +15,18 @@ final class SplashViewModel: CommonErrorHandlingViewModel {
         self.checkForUser()
     }
     
-    func login() {
-        self.showLoading()
-        
-        self.sessionStore.signInAnonymously { _, error in
-            self.dismissLoading()
-            
-            if let error = error {
-                self.showError(error: error)
-            } else {
-                self.appRouter.setCurrentPage(to: .main)
-            }
-        }
-    }
-    
     private func checkForUser() {
         self.sessionStore.checkForAlreadySignedInUser { error in
             if let error = error {
                 debugPrint("SPLASH_VM/CHECK_FOR_ALREADY_SIGNED_IN_USER: Error: \(error.localizedDescription)")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                    self.appRouter.setCurrentPage(to: .login)
+                }
             } else {
-                self.appRouter.setCurrentPage(to: .main)
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                    self.appRouter.setCurrentPage(to: .main)
+                }
             }
         }
     }

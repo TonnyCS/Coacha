@@ -19,24 +19,31 @@ struct SearchLocationView: View {
                 TextField("placeSearch_tf", text: self.$viewModel.searchText, prompt: Text("Misto"))
                     .padding(.all, 16)
                     .commonBackground()
+                    .padding(.horizontal, 16)
                 
-                List {
-                    Button(action: { }) {
-                        Text("Current location todo")
-                    }
-                    .scaleableLinkStyle()
-                    
-                    ForEach(self.viewModel.mapHelper.places) { place in
-                        Button(action: { self.viewModel.selectPlace(place) }) {
-                            Text(place.place.name ?? "N/A")
+                ScrollView {
+                    VStack(spacing: 32) {
+                        InteractableItemRow(title: "Use current location - TODO", subtitle: "Ve Střešovičkách 1090") {
+                            
+                        }
+                        
+                        VStack(spacing: 12) {
+                            ForEach(self.viewModel.mapHelper.places) { place in
+                                InteractableItemRow(
+                                    title: place.place.name ?? "N/A",
+                                    subtitle: place.place.locality,
+                                    trailingCaption: place.place.isoCountryCode) {
+                                        self.viewModel.selectPlace(place)
+                                    }
+                            }
                         }
                     }
+                    .padding([.horizontal, .bottom], 16)
                 }
             }
-            .padding(.all, 16)
-            
             .navigationTitle(Text("Misto"))
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar { self.toolbarButtons }
         }
         .onAppear {
             self.viewModel.mapHelper = mapHelper
@@ -46,6 +53,17 @@ struct SearchLocationView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }
         })
+    }
+    
+    private var toolbarButtons: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button(action: {
+                self.viewModel.dismissView()
+            }) {
+                Text("zrušit")
+                    .medium14(R.color.cinnabar)
+            }
+        }
     }
 }
 

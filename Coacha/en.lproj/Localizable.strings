@@ -9,3 +9,6 @@
  Style example :
  "<#Type#>.<#Property#>.<#Description#>" = "<#Translation#>";
 */
+
+// MARK: - GENERAL
+"general.appname" = "Coacha";
