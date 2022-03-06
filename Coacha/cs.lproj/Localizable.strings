@@ -1,0 +1,50 @@
+/* 
+  Localizable.strings
+  Coacha
+
+  Created by Anthony Šimek on 04.03.2022.
+*/
+
+/*
+ Style example :
+ "<#Type#>.<#Property#>.<#Description#>" = "<#Translation#>";
+*/
+
+// MARK: - GENERAL
+"general.appname" = "Coacha";
+
+"general.all" = "Všechny";
+"general.local" = "Lokální";
+"general.remote" = "Vzdálené";
+
+"general.save" = "Uložit";
+"general.cancel" = "Zrušit";
+"general.search" = "Vyhledat";
+
+"general.yes" = "Ano";
+"general.no" = "Ne";
+
+// MARK: - LOGIN
+"login.button.title" = "Začněme!";
+
+// MARK: - SPORT_ACTIVITY_LIST
+"sportActivityList.title" = "Sportovní aktivity";
+
+// MARK: - CREATE_SPORT_ACTIVITY
+"createSportActivity.title" = "Přidat aktivitu";
+"createSportActivity.name.placeholder" = "Nazev aktivity";
+"createSportActivity.place.title" = "Místo aktivity";
+"createSportActivity.duration.title" = "Doba trvání aktivity";
+"createSportActivity.storage.dialog.title" = "Vyberte uložiště:";
+
+// MARK: - SEARCH_LOCATION
+"searchLocation.title" = "Vyhledat místo";
+"searchLocation.useSearchedAddress.button.title" = "Použít zadanou adresu";
+
+// MARK: - ALERT
+"alert.sportActivity.remove.title" = "Smazání aktivity";
+"alert.sportActivity.remove.subtitle" = "Opravdu chcete smazat vytvořenou aktivitu? Tuto akci nezle vrátit zpět";
+
+// MARK: - ERROR
+"error.generic.title" = "Došlo k chybě!";
+"error.generic.message" = "Zopakujte akci později";

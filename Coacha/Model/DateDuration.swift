@@ -8,10 +8,6 @@
 import Foundation
 
 struct DateDuration: Codable {
-    var value: Int
-    var unit: Unit
-    
-    enum Unit: String, CaseIterable, Codable {
-        case minutes, hours
-    }
+    var hours: Int
+    var minutes: Int
 }

@@ -17,10 +17,13 @@ struct SportActivityListView: View {
             VStack {
                 ScrollView {
                     VStack(spacing: 16) {
-                        Picker("StorageSelection", selection: self.$viewModel.storageType) {
-                            Text("All").tag(StorageType.all)
-                            Text("Local").tag(StorageType.local)
-                            Text("Remote").tag(StorageType.remote)
+                        Picker("Storage_pick", selection: self.$viewModel.storageType) {
+                            Text("general.all".localized)
+                                .tag(StorageType.all)
+                            Text("general.local".localized)
+                                .tag(StorageType.local)
+                            Text("general.remote".localized)
+                                .tag(StorageType.remote)
                         }
                         .pickerStyle(.segmented)
                         
@@ -43,7 +46,7 @@ struct SportActivityListView: View {
             }
             .zStackBackground(R.color.white)
             
-            .navigationBarTitle("MainView")
+            .navigationBarTitle("sportActivityList.title".localized)
             .toolbar { self.toolbarButtons }
             
             .sheet(isPresented: self.$viewModel.showingNewSportActivityView) {

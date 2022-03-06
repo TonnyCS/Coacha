@@ -14,19 +14,7 @@ struct SportActivityItemView: View {
     var body: some View {
         ZStack {
             if viewModel.swipeOffset < 0 {
-                R.color.cinnabar.cornerRadius(10)
-                
-                HStack {
-                    Spacer()
-                    
-                    Button(action: self.viewModel.showRemoveSportActivityAlert) {
-                        R.image.apple.trash
-                            .toFitFrame(side: 24)
-                            .foregroundColor(R.color.perm.white)
-                    }
-                    //n = padding | Minimum: n + imageSize for which padding = n / 2 and after x - imageSize / 2
-                    .padding(.trailing, -self.viewModel.swipeOffset <= 84 ? 30 : (-self.viewModel.swipeOffset - 24) / 2)
-                }
+                swipeButton
             }
             
             cell
@@ -35,18 +23,18 @@ struct SportActivityItemView: View {
                     DragGesture()
                         .updating(self.$isDragging, body: { value, state, _ in
                             state = true
-                            self.onChanged(value: value)
+                            self.viewModel.onChanged(value: value)
                         })
                         .onEnded({ value in
-                            self.onEnd(value: value)
+                            self.viewModel.onEnd(value: value)
                         })
                 )
         }
-        .alert("alert.reservation.remove.title".localized, isPresented: self.$viewModel.showingRemoveAlert, actions: {
+        .alert("alert.sportActivity.remove.title".localized, isPresented: self.$viewModel.showingRemoveAlert, actions: {
             Button("general.yes".localized, role: .destructive, action: self.viewModel.removeAction)
             Button("general.no".localized, role: .cancel, action: {})
         }, message: {
-            Text("alert.reservation.remove.subtitle".localized)
+            Text("alert.sportActivity.remove.subtitle".localized)
         })
     }
     
@@ -68,6 +56,9 @@ struct SportActivityItemView: View {
                 
                 Text(self.viewModel.durationString)
                     .regular12(R.color.martini)
+                
+                Text(self.viewModel.storageType)
+                    .regular12(R.color.martini)
             }
         }
         .padding(.horizontal, 16)
@@ -75,24 +66,19 @@ struct SportActivityItemView: View {
         .commonBackground()
     }
     
-    private func onChanged(value: DragGesture.Value) {
-        if isDragging {
-            self.viewModel.swipeOffset = value.translation.width + self.viewModel.lastSwipeOffset
-        }
-    }
-    
-    private func onEnd(value: DragGesture.Value) {
-        withAnimation {
-            if -(value.translation.width + self.viewModel.lastSwipeOffset) >= 60 && -(value.translation.width + self.viewModel.lastSwipeOffset) <= UIScreen.main.bounds.width / 2 {
-                self.viewModel.swipeOffset = -84 // Button width
-                self.viewModel.lastSwipeOffset = -84
-            } else if -(value.translation.width + self.viewModel.lastSwipeOffset) > UIScreen.main.bounds.width / 2 {
-                self.viewModel.swipeOffset = -UIScreen.main.bounds.width
-                self.viewModel.lastSwipeOffset = -UIScreen.main.bounds.width
-                self.viewModel.showRemoveSportActivityAlert()
-            } else {
-                self.viewModel.swipeOffset = 0
-                self.viewModel.lastSwipeOffset = 0
+    private var swipeButton: some View {
+        Group {
+            R.color.cinnabar.cornerRadius(10)
+            
+            HStack {
+                Spacer()
+                
+                Button(action: self.viewModel.showRemoveSportActivityAlert) {
+                    R.image.apple.trash
+                        .toFitFrame(side: 24)
+                        .foregroundColor(R.color.perm.white)
+                }
+                .padding(.trailing, -self.viewModel.swipeOffset <= 84 ? 30 : (-self.viewModel.swipeOffset - 24) / 2)
             }
         }
     }
@@ -100,6 +86,6 @@ struct SportActivityItemView: View {
 
 fileprivate struct SportActivityItemView_Previews: PreviewProvider {
     static var previews: some View {
-        SportActivityItemView(viewModel: SportActivityItemViewModel(name: "TEST", place: "PLACE", date: Date(), duration: DateDuration(value: 1, unit: .minutes), isLocal: false, removeAction: {}))
+        SportActivityItemView(viewModel: SportActivityItemViewModel(name: "TEST", place: "PLACE", date: Date(), duration: DateDuration(hours: 1, minutes: 30), isLocal: false, removeAction: {}))
     }
 }

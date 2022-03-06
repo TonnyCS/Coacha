@@ -15,9 +15,8 @@ final class LoginViewModel: CommonErrorHandlingViewModel {
         self.showLoading()
 
         self.sessionStore.signInAnonymously { _, error in
-            self.dismissLoading()
-
             if let error = error {
+                self.dismissLoading()
                 self.showError(error: error)
             } else {
                 self.appRouter.setCurrentPage(to: .main)

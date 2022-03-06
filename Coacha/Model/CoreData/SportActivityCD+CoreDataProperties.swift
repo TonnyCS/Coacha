@@ -18,8 +18,8 @@ extension SportActivityCD {
     @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var place: String
-    @NSManaged public var durationValue: Int16
-    @NSManaged public var durationUnit: String
+    @NSManaged public var durationHours: Int16
+    @NSManaged public var durationMinutes: Int16
     @NSManaged public var date: Date
     
     var sportActivity: SportActivity {
@@ -27,8 +27,8 @@ extension SportActivityCD {
             id = newValue.id
             name = newValue.name
             place = newValue.place
-            durationValue = Int16(newValue.duration.value)
-            durationUnit = newValue.duration.unit.rawValue
+            durationHours = Int16(newValue.duration.hours)
+            durationMinutes = Int16(newValue.duration.minutes)
             date = newValue.date
         }
         get {
@@ -36,7 +36,7 @@ extension SportActivityCD {
                 id: self.id,
                 name: self.name,
                 place: self.place,
-                duration: DateDuration(value: Int(self.durationValue), unit: DateDuration.Unit(rawValue: self.durationUnit) ?? .minutes),
+                duration: DateDuration(hours: Int(self.durationHours), minutes: Int(self.durationMinutes)),
                 date: self.date,
                 isLocal: true
             )

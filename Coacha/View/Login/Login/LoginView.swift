@@ -55,7 +55,7 @@ fileprivate struct LoginView_Content: View {
                 Button(action: {
                     self.viewModel.login()
                 }) {
-                    Text("Get started!")
+                    Text("login.button.title".localized)
                         .medium17(R.color.cinnabar)
                         .padding(.all, 16)
                         .commonBackground()
@@ -64,6 +64,10 @@ fileprivate struct LoginView_Content: View {
             }
         }
         .zStackBackground(R.color.cinnabar)
+        
+        .alert(isPresented: self.$viewModel.showingAlert) {
+            Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
+        }
     }
 }
 

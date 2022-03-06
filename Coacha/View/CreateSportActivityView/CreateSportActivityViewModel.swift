@@ -14,7 +14,7 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     
     @Published var name: String = "" { didSet { self.checkForSaveButtonDisable() } }
     @Published var place: Place? { didSet { self.checkForSaveButtonDisable() } }
-    @Published var duration: DateDuration = DateDuration(value: 30, unit: .minutes) { didSet { self.checkForSaveButtonDisable() } }
+    @Published var duration: DateDuration = DateDuration(hours: 0, minutes: 30) { didSet { self.checkForSaveButtonDisable() } }
     
     @Published var saveButtonDisabled: Bool = true
     
@@ -56,7 +56,7 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     
     // MARK: - UI
     private func checkForSaveButtonDisable() {
-        self.saveButtonDisabled = self.name.isEmpty || self.place == nil || self.duration.value == 0
+        self.saveButtonDisabled = self.name.isEmpty || self.place == nil || (self.duration.hours + self.duration.minutes) == 0
     }
     
     func showConfirmationSheet() {

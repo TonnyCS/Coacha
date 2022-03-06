@@ -77,9 +77,11 @@ enum Resources {
             static let plus = Image(systemName: "plus")
             static let trash = Image(systemName: "trash")
             static let chevronRight = Image(systemName: "chevron.right")
+            static let magnifyingglass = Image(systemName: "magnifyingglass")
             
             enum fill {
                 static let flag2Crossed = Image(systemName: "flag.2.crossed.fill")
+                static let multiplyCircle = Image(systemName: "multiply.circle.fill")
             }
         }
     }

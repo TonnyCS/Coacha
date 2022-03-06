@@ -44,6 +44,7 @@ struct InteractableItemRow: View {
                 if let trailingCaption = trailingCaption {
                     Text(trailingCaption)
                         .medium17()
+                        .multilineTextAlignment(.trailing)
                 }
 
                 R.image.apple.chevronRight

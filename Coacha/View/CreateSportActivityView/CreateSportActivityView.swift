@@ -21,34 +21,17 @@ struct CreateSportActivityView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: 16) {
-                            TextField("name_tf", text: self.$viewModel.name, prompt: Text("nazev"))
+                            TextField("name_tf", text: self.$viewModel.name, prompt: Text("createSportActivity.name.placeholder".localized))
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
                                 .commonBackground()
                             
-                            InteractableItemRow(title: "Place", trailingCaption: self.viewModel.place?.place.name) {
+                            InteractableItemRow(title: "createSportActivity.place.title".localized, trailingCaption: self.viewModel.place?.place.name) {
                                 self.viewModel.showLocationSheet()
                             }
                             
-                            NonExpandableItemRow(title: "Duration") {
-                                HStack(spacing: 4) {
-                                    Picker("value_picker", selection: self.$viewModel.duration.value) {
-                                        ForEach(1 ..< 60, id:\.self) { value in
-                                            Text(String(value))
-                                        }
-                                    }
-                                    .pickerStyle(.menu)
-                                    .commonBackground(R.color.alto, shadowColor: nil)
-                                    
-                                    Picker("unit_picker", selection: self.$viewModel.duration.unit) {
-                                        ForEach(DateDuration.Unit.allCases, id:\.self) { unit in
-                                            Text(unit.rawValue)
-                                        }
-                                    }
-                                    .pickerStyle(.menu)
-                                    .padding(.horizontal, 8)
-                                    .commonBackground(R.color.alto, shadowColor: nil)
-                                }
+                            NonExpandableItemRow(title: "createSportActivity.duration.title".localized) {
+                                durationPicker
                             }
                         }
                         .padding(.all, 16)
@@ -56,10 +39,14 @@ struct CreateSportActivityView: View {
                 }
             }
             
-            .navigationBarTitle("CreateView")
+            .navigationBarTitle("createSportActivity.title".localized)
             .toolbar { self.toolbarButtons }
             
-            .confirmationDialog("Kam uložit", isPresented: self.$viewModel.showingConfirmationSheet) {
+            .confirmationDialog(
+                "createSportActivity.storage.dialog.title".localized,
+                isPresented: self.$viewModel.showingConfirmationSheet,
+                titleVisibility: .visible
+            ) {
                 self.confirmationButtons
             }
             .sheet(isPresented: self.$viewModel.showingLocationSheet) {
@@ -76,13 +63,41 @@ struct CreateSportActivityView: View {
         })
     }
     
+    private var durationPicker: some View {
+        VStack(alignment: .trailing, spacing: 4) {
+            HStack(spacing: 4) {
+                Picker("hour_picker", selection: self.$viewModel.duration.hours) {
+                    ForEach(1 ..< 24, id:\.self) { value in
+                        Text(String(value))
+                    }
+                }
+                .pickerStyle(.menu)
+                .commonBackground(R.color.alto, shadowColor: nil)
+                
+                Text("h.")
+            }
+            
+            HStack(spacing: 4) {
+                Picker("minute_picker", selection: self.$viewModel.duration.minutes) {
+                    ForEach(1 ..< 60, id:\.self) { value in
+                        Text(String(value))
+                    }
+                }
+                .pickerStyle(.menu)
+                .commonBackground(R.color.alto, shadowColor: nil)
+                
+                Text("min.".localized)
+            }
+        }
+    }
+    
     private var toolbarButtons: some ToolbarContent {
         Group {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
                     self.viewModel.dismissView()
                 }) {
-                    Text("Zrušit")
+                    Text("general.cancel".localized)
                         .medium14(R.color.cinnabar)
                 }
             }
@@ -91,7 +106,7 @@ struct CreateSportActivityView: View {
                 Button(action: {
                     self.viewModel.showConfirmationSheet()
                 }) {
-                    Text("Smazat ne")
+                    Text("general.save".localized)
                         .medium14(self.viewModel.saveButtonDisabled ? R.color.martini : R.color.cinnabar)
                 }
                 .scaleableLinkStyle()
@@ -102,11 +117,11 @@ struct CreateSportActivityView: View {
     
     private var confirmationButtons: some View {
         Group {
-            Button("Local") {
+            Button("general.local".localized) {
                 self.viewModel.createLocalSportActivity()
             }
             
-            Button("Remote") {
+            Button("general.remote".localized) {
                 self.viewModel.createRemoteSportActivity()
             }
         }

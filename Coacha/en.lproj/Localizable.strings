@@ -12,3 +12,39 @@
 
 // MARK: - GENERAL
 "general.appname" = "Coacha";
+
+"general.all" = "All";
+"general.local" = "Local";
+"general.remote" = "Remote";
+
+"general.save" = "Save";
+"general.cancel" = "Cancel";
+"general.search" = "Search";
+
+"general.yes" = "Yes";
+"general.no" = "No";
+
+// MARK: - LOGIN
+"login.button.title" = "Get started!";
+
+// MARK: - SPORT_ACTIVITY_LIST
+"sportActivityList.title" = "Sport activities";
+
+// MARK: - CREATE_SPORT_ACTIVITY
+"createSportActivity.title" = "Add new activity";
+"createSportActivity.name.placeholder" = "Name of activity";
+"createSportActivity.place.title" = "Activity location";
+"createSportActivity.duration.title" = "Activity duration";
+"createSportActivity.storage.dialog.title" = "Select storage type:";
+
+// MARK: - SEARCH_LOCATION
+"searchLocation.title" = "Search for location";
+"searchLocation.useSearchedAddress.button.title" = "Use searched address";
+
+// MARK: - ALERT
+"alert.sportActivity.remove.title" = "Removing activity";
+"alert.sportActivity.remove.subtitle" = "Are your sure you want to remove this activity? This action cannot be reversed";
+
+// MARK: - ERROR
+"error.generic.title" = "Error occurred!";
+"error.generic.message" = "Please try again later.";

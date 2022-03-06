@@ -15,34 +15,43 @@ struct SearchLocationView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                TextField("placeSearch_tf", text: self.$viewModel.searchText, prompt: Text("Misto"))
-                    .padding(.all, 16)
-                    .commonBackground()
-                    .padding(.horizontal, 16)
+            VStack(spacing: 32) {
+                SearchBar(searchText: self.$viewModel.searchText) {
+                    self.viewModel.mapHelper.searchForLocation(text: self.viewModel.searchText)
+                }
+                .padding(.horizontal, 16)
                 
                 ScrollView {
-                    VStack(spacing: 32) {
-                        InteractableItemRow(title: "Use current location - TODO", subtitle: "Ve Střešovičkách 1090") {
-                            
+                    VStack(spacing: 16) {
+                        if !self.viewModel.searchText.isEmpty {
+                            InteractableItemRow(
+                                title: "searchLocation.useSearchedAddress.button.title".localized,
+                                subtitle: self.viewModel.searchText
+                            ) {
+                                self.viewModel.selectPlace(nil)
+                            }
                         }
                         
-                        VStack(spacing: 12) {
+                        if self.viewModel.mapHelper.showingLoadingForLocationSearch {
+                            LoadingView()
+                        } else {
                             ForEach(self.viewModel.mapHelper.places) { place in
                                 InteractableItemRow(
                                     title: place.place.name ?? "N/A",
-                                    subtitle: place.place.locality,
+                                    subtitle: self.viewModel.getAdressString(from: place),
                                     trailingCaption: place.place.isoCountryCode) {
                                         self.viewModel.selectPlace(place)
                                     }
                             }
                         }
                     }
-                    .padding([.horizontal, .bottom], 16)
+                    .padding(.horizontal, 16)
+                    .animation(.easeInOut, value: self.viewModel.searchText)
                 }
             }
-            .navigationTitle(Text("Misto"))
-            .navigationBarTitleDisplayMode(.inline)
+            .padding(.vertical, 16)
+            
+            .navigationTitle(Text("searchLocation.title".localized))
             .toolbar { self.toolbarButtons }
         }
         .onAppear {
@@ -60,7 +69,7 @@ struct SearchLocationView: View {
             Button(action: {
                 self.viewModel.dismissView()
             }) {
-                Text("zrušit")
+                Text("general.cancel".localized)
                     .medium14(R.color.cinnabar)
             }
         }
