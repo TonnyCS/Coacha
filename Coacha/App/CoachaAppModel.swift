@@ -10,28 +10,34 @@ import Firebase
 
 final class CoachaAppModel: ObservableObject {
     @ObservedObject var sessionStore: SessionStore
-    @ObservedObject var dataStore: DataStore
+    @ObservedObject var remoteDataStore: RemoteDataStore
     @ObservedObject var mapHelper: MapHelper
+    @ObservedObject var userDefaultsHelper: UserDefaultsHelper
     
     init() {
         FirebaseApp.configure()
         
         self.sessionStore = SessionStore()
-        self.dataStore = DataStore()
+        self.remoteDataStore = RemoteDataStore()
         self.mapHelper = MapHelper()
+        self.userDefaultsHelper = UserDefaultsHelper()
         
         self.checkForFirstTimeStartup()
     }
     
     private func checkForFirstTimeStartup() {
-        if !UD.shared.hasRunBefore {
+        if userDefaultsHelper.hasRunBefore {
             self.sessionStore.signOut { error in
                 if let error = error {
                     debugPrint("APP_MODEL/checkForFirstTimeStartup: Error: \(error.localizedDescription)")
                 }
                 
-                UD.shared.hasRunBefore = true
+                self.userDefaultsHelper.hasRunBefore = true
             }
         }
+    }
+    
+    func onSportActivityListVIewAppear() {
+        self.remoteDataStore.getAllSportActivity()
     }
 }

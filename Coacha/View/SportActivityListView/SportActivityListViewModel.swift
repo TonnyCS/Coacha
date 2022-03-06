@@ -16,7 +16,7 @@ enum StorageType: Int {
 
 final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     private var cancellable: AnyCancellable?
-    @ObservedObject var dataStore: DataStore = DataStore()
+    @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
     
     @Published var storageType: StorageType = .all //TODO
     @Published var showingNewSportActivityView: Bool = false
@@ -26,7 +26,7 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     override init() {
         super.init()
         
-        let sportActivityPublisher = LocalStore.shared.allSportActivity.eraseToAnyPublisher()
+        let sportActivityPublisher = LocalDataStore.shared.allSportActivity.eraseToAnyPublisher()
         
         cancellable = sportActivityPublisher
             .sink(receiveValue: { allSportActivity in
@@ -39,11 +39,11 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
         
         switch storageType {
             case .all:
-                array = dataStore.allSportActivity + allSportActivity
+                array = remoteDataStore.allSportActivity + allSportActivity
             case .local:
                 array = allSportActivity
             case .remote:
-                array = dataStore.allSportActivity
+                array = remoteDataStore.allSportActivity
         }
         
         let sortedArray = array.sorted(by: { $0.date > $1.date })
@@ -52,13 +52,37 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     
     func deleteSportActivity(id: UUID, isLocal: Bool) {
         if isLocal {
-            LocalStore.shared.delete(id: id)
+            self.deleteLocalActivity(id: id)
         } else {
-            self.dataStore.deleteSportActivity(id: id) { error in
-                if let error = error {
+            self.deleteRemoteActivity(id: id)
+        }
+    }
+    
+    private func deleteLocalActivity(id: UUID) {
+        LocalDataStore.shared.delete(id: id) { result in
+            switch result {
+                case .success(_):
+                    debugPrint("SPORT_ACTIVITY_LIST_VM/removeLocal: Success")
+                case .failure(let error):
                     self.showError(error: error)
-                }
             }
+        }
+    }
+    
+    private func deleteRemoteActivity(id: UUID) {
+        self.remoteDataStore.deleteSportActivity(id: id) { result in
+            switch result {
+                case .success(_):
+                    debugPrint("SPORT_ACTIVITY_LIST_VM/removeRemote: Success")
+                case .failure(let error):
+                    self.showError(error: error)
+            }
+        }
+    }
+    
+    func onPlusButtonClicked() {
+        withAnimation {
+            self.showingNewSportActivityView = true
         }
     }
 }

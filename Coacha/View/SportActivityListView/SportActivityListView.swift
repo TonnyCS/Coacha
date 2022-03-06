@@ -8,41 +8,39 @@
 import SwiftUI
 
 struct SportActivityListView: View {
-    @EnvironmentObject var dataStore: DataStore
+    @EnvironmentObject var remoteDataStore: RemoteDataStore
     
     @StateObject var viewModel: SportActivityListViewModel
     
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView {
-                    VStack(spacing: 16) {
-                        Picker("Storage_pick", selection: self.$viewModel.storageType) {
-                            Text("general.all".localized)
-                                .tag(StorageType.all)
-                            Text("general.local".localized)
-                                .tag(StorageType.local)
-                            Text("general.remote".localized)
-                                .tag(StorageType.remote)
-                        }
-                        .pickerStyle(.segmented)
-                        
-                        ForEach(self.viewModel.getArray()) { sportActivity in
-                            SportActivityItemView(
-                                viewModel: SportActivityItemViewModel(
-                                    name: sportActivity.name,
-                                    place: sportActivity.place,
-                                    date: sportActivity.date,
-                                    duration: sportActivity.duration,
-                                    isLocal: sportActivity.isLocal
-                                ){
-                                    self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
-                                }
-                            )
-                        }
+            ScrollView {
+                VStack(spacing: 16) {                    
+                    Picker("Storage_pick", selection: self.$viewModel.storageType) {
+                        Text("general.all".localized)
+                            .tag(StorageType.all)
+                        Text("general.local".localized)
+                            .tag(StorageType.local)
+                        Text("general.remote".localized)
+                            .tag(StorageType.remote)
                     }
-                    .padding(.all, 16)
+                    .pickerStyle(.segmented)
+                    
+                    ForEach(self.viewModel.getArray(), id: \.id) { sportActivity in
+                        SportActivityItemView(
+                            viewModel: SportActivityItemViewModel(
+                                name: sportActivity.name,
+                                place: sportActivity.place,
+                                date: sportActivity.date,
+                                duration: sportActivity.duration,
+                                isLocal: sportActivity.isLocal
+                            ){
+                                self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
+                            }
+                        )
+                    }
                 }
+                .padding(.all, 16)
             }
             .zStackBackground(R.color.white)
             
@@ -53,20 +51,19 @@ struct SportActivityListView: View {
                 CreateSportActivityView(viewModel: CreateSportActivityViewModel())
             }
         }
+        .navigationViewStyle(.stack)
+        
         .alert(isPresented: self.$viewModel.showingAlert) {
             Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
         }
-        
         .onAppear {
-            self.viewModel.dataStore = self.dataStore
+            self.viewModel.remoteDataStore = self.remoteDataStore
         }
     }
     
     private var toolbarButtons: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action: {
-                self.viewModel.showingNewSportActivityView = true
-            }) {
+            Button(action: self.viewModel.onPlusButtonClicked) {
                 R.image.apple.plus
                     .foregroundColor(R.color.cinnabar)
             }

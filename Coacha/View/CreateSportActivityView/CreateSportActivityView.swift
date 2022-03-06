@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateSportActivityView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @EnvironmentObject var dataStore: DataStore
+    @EnvironmentObject var remoteDataStore: RemoteDataStore
     
     @StateObject var viewModel: CreateSportActivityViewModel
     
@@ -53,13 +53,13 @@ struct CreateSportActivityView: View {
                 SearchLocationView(viewModel: SearchLocationViewModel(selectedPlace: self.$viewModel.place))
             }
         }
+        .navigationViewStyle(.stack)
+        
         .onAppear {
-            self.viewModel.dataStore = self.dataStore
+            self.viewModel.remoteDataStore = self.remoteDataStore
         }
-        .onReceive(self.viewModel.viewDismissalModePublished, perform: { (shouldDismiss) in
-            if shouldDismiss {
-                self.presentationMode.wrappedValue.dismiss()
-            }
+        .onReceive(self.viewModel.viewDismissalModePublished, perform: { _ in
+            self.presentationMode.wrappedValue.dismiss()
         })
     }
     
@@ -67,7 +67,7 @@ struct CreateSportActivityView: View {
         VStack(alignment: .trailing, spacing: 4) {
             HStack(spacing: 4) {
                 Picker("hour_picker", selection: self.$viewModel.duration.hours) {
-                    ForEach(1 ..< 24, id:\.self) { value in
+                    ForEach(0 ..< 24, id:\.self) { value in
                         Text(String(value))
                     }
                 }
@@ -79,7 +79,7 @@ struct CreateSportActivityView: View {
             
             HStack(spacing: 4) {
                 Picker("minute_picker", selection: self.$viewModel.duration.minutes) {
-                    ForEach(1 ..< 60, id:\.self) { value in
+                    ForEach(0 ..< 60, id:\.self) { value in
                         Text(String(value))
                     }
                 }

@@ -7,18 +7,12 @@
 
 import Foundation
 
-typealias UD = UserDefaultsHelper
-
-final class UserDefaultsHelper {
+final class UserDefaultsHelper: ObservableObject {
     fileprivate enum Key: String {
         case hasRunBefore = "hasRunBefore"
     }
     
-    static var shared: UserDefaultsHelper = UserDefaultsHelper()
-    
     fileprivate let ud = UserDefaults.standard
-    
-    private init() {}
 }
 
 extension UserDefaultsHelper {

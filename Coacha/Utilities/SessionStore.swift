@@ -11,13 +11,10 @@ import AuthenticationServices
 import CryptoKit
 
 class SessionStore: ObservableObject {
-    @Published var session: User?
-    
     func checkForAlreadySignedInUser(completion: @escaping (_ error: Error?) -> Void) {
         Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
                 debugPrint("SESSION_STORE/CHECK_FOR_ALREADY_SIGNED_IN_USER: UserID: \(user.uid)")
-                self.session = user
                 completion(nil)
             } else {
                 debugPrint("SESSION_STORE/CHECK_FOR_ALREADY_SIGNED_IN_USER: Error: Noone signed in.")
@@ -35,8 +32,7 @@ class SessionStore: ObservableObject {
             }
             
             guard let user = authResult?.user else { return }
-            debugPrint("SESSION_STORE/SIGN_IN_ANONYMOUSLY: Success | UserID: \(user.uid)")
-            self.session = user
+            debugPrint("SESSION_STORE/SIGN_IN_ANONYMOUSLY: Success | UserID: \(user.uid)")            
             completion(user, nil)
         }
     }

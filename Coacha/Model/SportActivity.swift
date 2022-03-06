@@ -6,23 +6,47 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestoreSwift
 
-struct SportActivity: Identifiable, Codable {
+protocol SportActivity {
+    var id: UUID { get set }
+    var name: String { get set }
+    var place: String { get set }
+    var duration: DateDuration { get set }
+    var date: Date { get set }
+    var isLocal: Bool { get set }
+}
+
+struct RemoteSportActivity: SportActivity, Identifiable, Codable {
     var id: UUID
     var name: String
     var place: String
     var duration: DateDuration
     var date: Date
-    var isLocal: Bool //TODO better - Not saving, map, mainly firestore
+    var isLocal: Bool = false
     
-    init(id: UUID = UUID(), name: String, place: String, duration: DateDuration, date: Date = Date(), isLocal: Bool) {
+    init(id: UUID = UUID(), name: String, place: String, duration: DateDuration, date: Date = Date()) {
         self.id = id
         self.name = name
         self.place = place
         self.duration = duration
         self.date = date
-        self.isLocal = isLocal
     }
 }
+
+struct LocalSportActivity: SportActivity, Identifiable, Codable {
+    var id: UUID
+    var name: String
+    var place: String
+    var duration: DateDuration
+    var date: Date
+    var isLocal: Bool = true
+    
+    init(id: UUID = UUID(), name: String, place: String, duration: DateDuration, date: Date = Date()) {
+        self.id = id
+        self.name = name
+        self.place = place
+        self.duration = duration
+        self.date = date
+    }
+}
+

@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
 
-class DataStore: ObservableObject {
+class RemoteDataStore: ObservableObject {
     private var db = Firestore.firestore()
     
     @Published private(set) var allSportActivity = [SportActivity]()
@@ -37,14 +37,14 @@ class DataStore: ObservableObject {
                     return
                 }
                 
-                self.allSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> SportActivity? in
-                    return try? queryDocumentSnapshot.data(as: SportActivity.self)
+                self.allSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> RemoteSportActivity? in
+                    return try? queryDocumentSnapshot.data(as: RemoteSportActivity.self)
                 })
             }
     }
     
     // MARK: - PUT
-    func putSportActivity(sportActivity: SportActivity, completion: @escaping (_ error: Error?) -> Void) {
+    func putSportActivity(sportActivity: RemoteSportActivity, completion: @escaping (Result<RemoteSportActivity, Error>) -> Void) {
         guard let userID = Auth.auth().currentUser?.uid else {
             debugPrint("DATA_STORE/putSportActivity: Error: No userID")
             return
@@ -59,16 +59,16 @@ class DataStore: ObservableObject {
                 .setData(from: sportActivity)
             
             debugPrint("DATA_STORE/putSportActivity: Success: \(sportActivity.id.uuidString), userID: \(userID)")
-            completion(nil)
+            completion(.success(sportActivity))
             
-        } catch let error {
+        } catch {
             debugPrint("DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
-            completion(error)
+            completion(.failure(error))
         }
     }
     
     // MARK: - REMOVE
-    func deleteSportActivity(id: UUID, completion: @escaping (_ error: Error?) -> Void) {
+    func deleteSportActivity(id: UUID, completion: @escaping (Result<UUID, Error>) -> Void) {
         guard let userID = Auth.auth().currentUser?.uid else {
             debugPrint("DATA_STORE/deleteSportActivity: Error: No userID")
             return
@@ -82,10 +82,10 @@ class DataStore: ObservableObject {
             .delete() { error in
                 if let error = error {
                     debugPrint("DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
-                    completion(error)
+                    completion(.failure(error))
                 } else {
                     debugPrint("DATA_STORE/putSportActivity: Success")
-                    completion(nil)
+                    completion(.success(id))
                 }
             }
     }

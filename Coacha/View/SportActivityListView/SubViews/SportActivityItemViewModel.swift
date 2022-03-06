@@ -31,7 +31,7 @@ final class SportActivityItemViewModel: ObservableObject {
         self.removeAction = removeAction
         self.durationString = "\(duration.hours) h. \(duration.minutes) min."
     }
-    
+
     // MARK: - SWIPE
     func onChanged(value: DragGesture.Value) {
         self.swipeOffset = value.translation.width + self.lastSwipeOffset

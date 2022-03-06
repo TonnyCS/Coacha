@@ -11,13 +11,17 @@ import MapKit
 import Intents
 
 final class SearchLocationViewModel: ObservableObject {
-    var viewDismissalModePublished = PassthroughSubject<Bool, Never>()
+    var viewDismissalModePublished = PassthroughSubject<(), Never>()
     private var cancellable: AnyCancellable?
     
     @ObservedObject var mapHelper: MapHelper = MapHelper()
     
-    @Binding var selectedPlace: Place?
+    @Published var searchedPlaces: [Place] = []
     @Published var searchText: String = ""
+    
+    @Binding var selectedPlace: Place?
+    
+    @Published var showingLoading: Bool = false
     
     init(selectedPlace: Binding<Place?>) {
         self._selectedPlace = selectedPlace
@@ -26,7 +30,7 @@ final class SearchLocationViewModel: ObservableObject {
             .debounce(for: .seconds(0.3), scheduler: DispatchQueue.main)
             .sink { text in
                 if !text.isEmpty {
-                    self.mapHelper.searchForLocation(text: text)
+                    self.searchForLocation(text: text)
                 }
             }
     }
@@ -34,12 +38,25 @@ final class SearchLocationViewModel: ObservableObject {
     func selectPlace(_ place: Place?) {
         if let place = place {
             self.selectedPlace = place
-        } else { //Mainly for offline
-            let placemark = CLPlacemark(location: CLLocation(latitude: .zero, longitude: .zero), name: self.searchText, postalAddress: nil) //get location
+        } else { //Mainly for when user is offline or cannot find the location
+            let placemark = CLPlacemark(location: CLLocation(latitude: .zero, longitude: .zero), name: self.searchText, postalAddress: nil)
             self.selectedPlace = Place(place: placemark)
         }
         
         self.dismissView()
+    }
+    
+    func searchForLocation(text: String) {
+        self.mapHelper.searchForLocation(text: self.searchText) { result in
+            switch result {
+                case .success(let places):
+                    withAnimation {
+                        self.searchedPlaces = places
+                    }
+                case .failure(_):
+                    return
+            }
+        }
     }
     
     func getAdressString(from place: Place) -> String? {
@@ -47,6 +64,6 @@ final class SearchLocationViewModel: ObservableObject {
     }
     
     func dismissView() {
-        self.viewDismissalModePublished.send(true)
+        self.viewDismissalModePublished.send(())
     }
 }

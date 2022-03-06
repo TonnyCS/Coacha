@@ -17,7 +17,7 @@ struct SearchLocationView: View {
         NavigationView {
             VStack(spacing: 32) {
                 SearchBar(searchText: self.$viewModel.searchText) {
-                    self.viewModel.mapHelper.searchForLocation(text: self.viewModel.searchText)
+                    self.viewModel.searchForLocation(text: self.viewModel.searchText)
                 }
                 .padding(.horizontal, 16)
                 
@@ -32,10 +32,10 @@ struct SearchLocationView: View {
                             }
                         }
                         
-                        if self.viewModel.mapHelper.showingLoadingForLocationSearch {
+                        if self.viewModel.showingLoading {
                             LoadingView()
                         } else {
-                            ForEach(self.viewModel.mapHelper.places) { place in
+                            ForEach(self.viewModel.searchedPlaces) { place in
                                 InteractableItemRow(
                                     title: place.place.name ?? "N/A",
                                     subtitle: self.viewModel.getAdressString(from: place),
@@ -54,13 +54,13 @@ struct SearchLocationView: View {
             .navigationTitle(Text("searchLocation.title".localized))
             .toolbar { self.toolbarButtons }
         }
+        .navigationViewStyle(.stack)
+        
         .onAppear {
             self.viewModel.mapHelper = mapHelper
         }
-        .onReceive(self.viewModel.viewDismissalModePublished, perform: { (shouldDismiss) in
-            if shouldDismiss {
-                self.presentationMode.wrappedValue.dismiss()
-            }
+        .onReceive(self.viewModel.viewDismissalModePublished, perform: { _ in 
+            self.presentationMode.wrappedValue.dismiss()
         })
     }
     

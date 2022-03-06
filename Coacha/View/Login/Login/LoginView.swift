@@ -31,7 +31,7 @@ struct LoginView: View {
     }
 }
 
-fileprivate struct LoginView_Content: View {
+fileprivate struct LoginView_Content: View { //var
     let animation: Namespace.ID
     
     @StateObject var viewModel: LoginViewModel

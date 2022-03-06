@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
-    var viewDismissalModePublished = PassthroughSubject<Bool, Never>()
-    @ObservedObject var dataStore: DataStore = DataStore()
+    var viewDismissalModePublished = PassthroughSubject<Void, Never>()
+    @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
     
     @Published var name: String = "" { didSet { self.checkForSaveButtonDisable() } }
     @Published var place: Place? { didSet { self.checkForSaveButtonDisable() } }
@@ -24,34 +24,41 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     func createRemoteSportActivity() {
         self.showLoading()
         
-        self.dataStore.putSportActivity(
-            sportActivity: SportActivity(
+        self.remoteDataStore.putSportActivity(
+            sportActivity: RemoteSportActivity(
                 name: self.name,
                 place: self.place?.place.name ?? "N/A",
-                duration: self.duration,
-                isLocal: false
+                duration: self.duration
             )
-        ) { error in
-            if let error = error {
-                self.dismissLoading()
-                self.showError(error: error)
-            } else {
-                self.dismissView()
+        ) { result in
+            switch result {
+                case .success(_):
+                    self.dismissView()
+                case .failure(let error):
+                    self.dismissLoading()
+                    self.showError(error: error)
             }
         }
     }
     
     func createLocalSportActivity() { //TODO
-        LocalStore.shared.add(
-            sportActivity: SportActivity(
+        self.showLoading()
+        
+        LocalDataStore.shared.add(
+            sportActivity: LocalSportActivity(
                 name: self.name,
                 place: self.place?.place.name ?? "N/A",
-                duration: self.duration,
-                isLocal: true
+                duration: self.duration
             )
-        )
-        
-        self.dismissView()
+        ) { result in
+            switch result {
+                case .success(_):
+                    self.dismissView()
+                case .failure(let error):
+                    self.dismissLoading()
+                    self.showError(error: error)
+            }
+        }
     }
     
     // MARK: - UI
@@ -68,6 +75,6 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     }
     
     func dismissView() {
-        self.viewDismissalModePublished.send(true)
+        self.viewDismissalModePublished.send(())
     }
 }

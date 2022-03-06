@@ -8,7 +8,7 @@
 import SwiftUI
 
 class CommonErrorHandlingViewModel: ObservableObject {
-    let vibration = UINotificationFeedbackGenerator()
+    private let vibration = UINotificationFeedbackGenerator()
     
     @Published var showingLoading: Bool = false
 

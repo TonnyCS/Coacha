@@ -22,8 +22,9 @@ struct CoachaApp: App {
                 switch self.appRouter.currentPage {
                     case .main:
                         SportActivityListView(viewModel: self.sportActivityListViewModel)
-                            .onAppear { self.appModel.dataStore.getAllSportActivity() }
-                            .environmentObject(self.appModel.dataStore)
+                            .onAppear { self.appModel.onSportActivityListVIewAppear() }
+                            .environmentObject(self.appRouter)
+                            .environmentObject(self.appModel.remoteDataStore)
                             .environmentObject(self.appModel.mapHelper)
                     default:
                         SplashView(viewModel: self.splashViewModel)

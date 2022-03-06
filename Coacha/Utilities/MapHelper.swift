@@ -8,30 +8,22 @@
 import MapKit
 import SwiftUI
 
-final class MapHelper: ObservableObject {
-    @Published var showingLoadingForLocationSearch: Bool = false
-    @Published var places: [Place] = []
-    
-    func searchForLocation(text: String) {
-        withAnimation {
-            self.showingLoadingForLocationSearch = true
-        }
-        
+class MapHelper: ObservableObject {
+    func searchForLocation(text: String, completion: @escaping (Result<[Place], Error>) -> Void) {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = text
         
         MKLocalSearch(request: request).start { response, _ in
-            withAnimation {
-                self.showingLoadingForLocationSearch = false
+            guard let response = response else {
+                completion(.failure(ErrorWithCustomMessage(msg: "Failed to parse response")))
+                return
             }
             
-            guard let response = response else { return }
+            let places = response.mapItems.compactMap({ item -> Place? in
+                return Place(place: item.placemark)
+            })
             
-            withAnimation {
-                self.places = response.mapItems.compactMap({ item -> Place? in
-                    return Place(place: item.placemark)
-                })
-            }
+            completion(.success(places))
         }
     }
 }
