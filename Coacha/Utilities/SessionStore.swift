@@ -11,40 +11,40 @@ import AuthenticationServices
 import CryptoKit
 
 class SessionStore: ObservableObject {
-    func checkForAlreadySignedInUser(completion: @escaping (_ error: Error?) -> Void) {
+    func checkForAlreadySignedInUser(completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().addStateDidChangeListener { _, user in
             if let user = user {
                 debugPrint("SESSION_STORE/CHECK_FOR_ALREADY_SIGNED_IN_USER: UserID: \(user.uid)")
-                completion(nil)
+                completion(.success(user))
             } else {
                 debugPrint("SESSION_STORE/CHECK_FOR_ALREADY_SIGNED_IN_USER: Error: Noone signed in.")
-                completion(ErrorWithCustomMessage(msg: "general.error"))
+                completion(.failure(ErrorWithCustomMessage(msg: "Noone signed in.")))
             }
         }
     }
     
-    func signInAnonymously(completion: @escaping (_ user: User?, _ error: Error?) -> Void) {
+    func signInAnonymously(completion: @escaping (Result<User, Error>) -> Void) {
         Auth.auth().signInAnonymously { authResult, error in
             if let error = error {
                 debugPrint("SESSION_STORE/SIGN_IN_ANONYMOUSLY: Error: \(error.localizedDescription)")
-                completion(nil, error)
+                completion(.failure(error))
                 return
             }
             
             guard let user = authResult?.user else { return }
             debugPrint("SESSION_STORE/SIGN_IN_ANONYMOUSLY: Success | UserID: \(user.uid)")            
-            completion(user, nil)
+            completion(.success(user))
         }
     }
     
-    func signOut(completion: @escaping (_ error: Error?) -> Void) {
+    func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
             debugPrint("SESSION_STORE/OUT: Success")
-            completion(nil)
-        } catch let nsError as NSError {
-            debugPrint("SESSION_STORE/OUT: Error: \(nsError.localizedDescription)")
-            completion(nsError)
+            completion(.success(()))
+        } catch {
+            debugPrint("SESSION_STORE/OUT: Error: \(error.localizedDescription)")
+            completion(.failure(error))
         }
     }
 }

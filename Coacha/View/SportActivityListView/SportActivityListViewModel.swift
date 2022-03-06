@@ -15,35 +15,31 @@ enum StorageType: Int {
 }
 
 final class SportActivityListViewModel: CommonErrorHandlingViewModel {
-    private var cancellable: AnyCancellable?
     @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
+    @ObservedObject var localDataStore: LocalDataStore = LocalDataStore()
     
-    @Published var storageType: StorageType = .all //TODO
+    @Published var storageType: StorageType = .all
     @Published var showingNewSportActivityView: Bool = false
     
     @Published var allSportActivity: [SportActivity] = []
     
     override init() {
         super.init()
-        
-        let sportActivityPublisher = LocalDataStore.shared.allSportActivity.eraseToAnyPublisher()
-        
-        cancellable = sportActivityPublisher
-            .sink(receiveValue: { allSportActivity in
-                self.allSportActivity = allSportActivity.map { $0.sportActivity }
-            })
     }
     
     func getArray() -> [SportActivity] {
         var array = [SportActivity]()
         
+        
+        let localSportActivity = localDataStore.allSportActivity.value.map { $0.sportActivity }
+        
         switch storageType {
             case .all:
-                array = remoteDataStore.allSportActivity + allSportActivity
+                array = remoteDataStore.remoteSportActivity + localSportActivity
             case .local:
-                array = allSportActivity
+                array = localSportActivity
             case .remote:
-                array = remoteDataStore.allSportActivity
+                array = remoteDataStore.remoteSportActivity
         }
         
         let sortedArray = array.sorted(by: { $0.date > $1.date })
@@ -59,7 +55,7 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     }
     
     private func deleteLocalActivity(id: UUID) {
-        LocalDataStore.shared.delete(id: id) { result in
+        self.localDataStore.delete(id: id) { result in
             switch result {
                 case .success(_):
                     debugPrint("SPORT_ACTIVITY_LIST_VM/removeLocal: Success")

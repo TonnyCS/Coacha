@@ -10,6 +10,7 @@ import SwiftUI
 struct CreateSportActivityView: View {
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var remoteDataStore: RemoteDataStore
+    @EnvironmentObject var localDataStore: LocalDataStore
     
     @StateObject var viewModel: CreateSportActivityViewModel
     
@@ -57,6 +58,7 @@ struct CreateSportActivityView: View {
         
         .onAppear {
             self.viewModel.remoteDataStore = self.remoteDataStore
+            self.viewModel.localDataStore = self.localDataStore
         }
         .onReceive(self.viewModel.viewDismissalModePublished, perform: { _ in
             self.presentationMode.wrappedValue.dismiss()

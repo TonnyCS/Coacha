@@ -25,6 +25,7 @@ struct CoachaApp: App {
                             .onAppear { self.appModel.onSportActivityListVIewAppear() }
                             .environmentObject(self.appRouter)
                             .environmentObject(self.appModel.remoteDataStore)
+                            .environmentObject(self.appModel.localDataStore)
                             .environmentObject(self.appModel.mapHelper)
                     default:
                         SplashView(viewModel: self.splashViewModel)

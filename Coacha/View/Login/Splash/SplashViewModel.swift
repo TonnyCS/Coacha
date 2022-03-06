@@ -16,17 +16,16 @@ final class SplashViewModel: ObservableObject {
     }
     
     private func checkForUser() {
-        self.sessionStore.checkForAlreadySignedInUser { error in
-            if let error = error {
-                debugPrint("SPLASH_VM/CHECK_FOR_ALREADY_SIGNED_IN_USER: Error: \(error.localizedDescription)")
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                    self.appRouter.setCurrentPage(to: .login)
-                }
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                    self.appRouter.setCurrentPage(to: .main)
-                }
+        self.sessionStore.checkForAlreadySignedInUser { result in
+            switch result {
+                case .success(_):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                        self.appRouter.setCurrentPage(to: .main)
+                    }
+                case .failure(_):
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                        self.appRouter.setCurrentPage(to: .login)
+                    }
             }
         }
     }

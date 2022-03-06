@@ -1,5 +1,5 @@
 //
-//  DataStore.swift
+//  RemoteDataStore.swift
 //  Coacha
 //
 //  Created by Anthony Šimek on 04.03.2022.
@@ -12,7 +12,7 @@ import FirebaseFirestoreSwift
 class RemoteDataStore: ObservableObject {
     private var db = Firestore.firestore()
     
-    @Published private(set) var allSportActivity = [SportActivity]()
+    @Published private(set) var remoteSportActivity = [SportActivity]()
     
     // MARK: - GET
     func getAllSportActivity() {
@@ -37,7 +37,7 @@ class RemoteDataStore: ObservableObject {
                     return
                 }
                 
-                self.allSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> RemoteSportActivity? in
+                self.remoteSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> RemoteSportActivity? in
                     return try? queryDocumentSnapshot.data(as: RemoteSportActivity.self)
                 })
             }

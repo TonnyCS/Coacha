@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SportActivityListView: View {
     @EnvironmentObject var remoteDataStore: RemoteDataStore
+    @EnvironmentObject var localDataStore: LocalDataStore
     
     @StateObject var viewModel: SportActivityListViewModel
     
@@ -58,6 +59,7 @@ struct SportActivityListView: View {
         }
         .onAppear {
             self.viewModel.remoteDataStore = self.remoteDataStore
+            self.viewModel.localDataStore = self.localDataStore
         }
     }
     

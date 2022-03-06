@@ -14,12 +14,13 @@ final class LoginViewModel: CommonErrorHandlingViewModel {
     func login() {
         self.showLoading()
 
-        self.sessionStore.signInAnonymously { _, error in
-            if let error = error {
-                self.dismissLoading()
-                self.showError(error: error)
-            } else {
-                self.appRouter.setCurrentPage(to: .main)
+        self.sessionStore.signInAnonymously { result in
+            switch result {
+                case .success(_):
+                    self.appRouter.setCurrentPage(to: .main)
+                case .failure(let error):
+                    self.dismissLoading()
+                    self.showError(error: error)
             }
         }
     }

@@ -13,9 +13,7 @@ class LocalDataStore: NSObject, ObservableObject {
     var allSportActivity = CurrentValueSubject<[SportActivityCD], Never>([])
     private let sportActivityFetchController: NSFetchedResultsController<SportActivityCD>
     
-    static let shared: LocalDataStore = LocalDataStore()
-    
-    private override init() {
+    override init() {
         let fetchRequest = SportActivityCD.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: C.dataStore.key.sportActivity.id, ascending: true)] //has to have one, fatal error
         
@@ -29,12 +27,15 @@ class LocalDataStore: NSObject, ObservableObject {
         super.init()
         
         sportActivityFetchController.delegate = self
-        
+    }
+    
+    func performFetchOfSportActivity() {
         do {
             try sportActivityFetchController.performFetch()
+            debugPrint("LOCAL_STORAGE/performFetchOfSportActivity: Success")
             allSportActivity.value = sportActivityFetchController.fetchedObjects ?? []
         } catch {
-            debugPrint("LOCAL_STORAGE/init: Error \(error.localizedDescription)")
+            debugPrint("LOCAL_STORAGE/performFetchOfSportActivity: Error \(error.localizedDescription)")
         }
     }
     

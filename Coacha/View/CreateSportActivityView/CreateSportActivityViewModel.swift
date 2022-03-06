@@ -11,6 +11,7 @@ import Combine
 final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     var viewDismissalModePublished = PassthroughSubject<Void, Never>()
     @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
+    @ObservedObject var localDataStore: LocalDataStore = LocalDataStore()
     
     @Published var name: String = "" { didSet { self.checkForSaveButtonDisable() } }
     @Published var place: Place? { didSet { self.checkForSaveButtonDisable() } }
@@ -41,10 +42,10 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
         }
     }
     
-    func createLocalSportActivity() { //TODO
+    func createLocalSportActivity() {
         self.showLoading()
         
-        LocalDataStore.shared.add(
+        self.localDataStore.add(
             sportActivity: LocalSportActivity(
                 name: self.name,
                 place: self.place?.place.name ?? "N/A",
