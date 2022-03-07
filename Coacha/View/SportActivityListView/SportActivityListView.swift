@@ -27,18 +27,23 @@ struct SportActivityListView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    ForEach(self.viewModel.sportActivities, id: \.id) { sportActivity in
-                        SportActivityItemView(
-                            viewModel: SportActivityItemViewModel(
-                                name: sportActivity.name,
-                                place: sportActivity.place,
-                                date: sportActivity.date,
-                                duration: sportActivity.duration,
-                                isLocal: sportActivity.isLocal
-                            ){
-                                self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
-                            }
-                        )
+                    if self.viewModel.sportActivities.isEmpty {
+                        Text("sportActivityList.empty.title".localized)
+                            .medium17()
+                    } else {
+                        ForEach(self.viewModel.sportActivities, id: \.id) { sportActivity in
+                            SportActivityItemView(
+                                viewModel: SportActivityItemViewModel(
+                                    name: sportActivity.name,
+                                    place: sportActivity.place,
+                                    date: sportActivity.date,
+                                    duration: sportActivity.duration,
+                                    isLocal: sportActivity.isLocal
+                                ){
+                                    self.viewModel.deleteSportActivity(id: sportActivity.id, isLocal: sportActivity.isLocal)
+                                }
+                            )
+                        }
                     }
                 }
                 .padding(.all, 16)
@@ -77,6 +82,12 @@ struct SportActivityListView: View {
                     .foregroundColor(R.color.perm.cinnabar)
             }
         }
+    }
+    
+    func getIndex(for thisSportActivity: SportActivity) -> Int {
+        return self.viewModel.sportActivities.firstIndex { sportActivity in
+            return sportActivity.id == thisSportActivity.id
+        } ?? 0
     }
 }
 

@@ -29,6 +29,7 @@
 
 // MARK: - SPORT_ACTIVITY_LIST
 "sportActivityList.title" = "Sport activities";
+"sportActivityList.empty.title" = "You have no saved activities! 😳\nAdd your sport activity using the plus button on top.";
 
 // MARK: - CREATE_SPORT_ACTIVITY
 "createSportActivity.title" = "Add new activity";

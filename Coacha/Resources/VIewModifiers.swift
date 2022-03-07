@@ -114,6 +114,7 @@ fileprivate struct Medium17: ViewModifier {
         content
             .font(R.font.medium17)
             .foregroundColor(color)
+            .multilineTextAlignment(.center)
     }
 }
 

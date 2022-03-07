@@ -42,7 +42,7 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
         }
         
         let sortedArray = array.sorted(by: { $0.date > $1.date })
-        withAnimation {
+        withAnimation(.easeInOut(duration: 0.3)) {
             self.sportActivities = sortedArray
         }
     }

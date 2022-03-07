@@ -29,6 +29,7 @@
 
 // MARK: - SPORT_ACTIVITY_LIST
 "sportActivityList.title" = "Sportovní aktivity";
+"sportActivityList.empty.title" = "Nemáte uložené žádné aktivity! 😳\nAktivitu můžete přidat pomocí plus tlačítka na hodní straně.";
 
 // MARK: - CREATE_SPORT_ACTIVITY
 "createSportActivity.title" = "Přidat aktivitu";
