@@ -72,7 +72,7 @@ struct SportActivityItemView: View {
     
     private var swipeButton: some View {
         Group {
-            R.color.tamarillo.cornerRadius(20)
+            R.color.perm.tamarillo.cornerRadius(20)
             
             HStack {
                 Spacer()

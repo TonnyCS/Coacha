@@ -17,6 +17,11 @@ enum Resources {
         enum perm {
             /// WHITE | HEX: #FFFFFF
             static let white = Color("Perm_White")
+            
+            /// LIGHT_RED | L: HEX: #E5383B
+            static let cinnabar = Color("Perm_Cinnabar")
+            /// DARK_RED | L: HEX: #A4161A
+            static let tamarillo = Color("Perm_Tamarillo")
         }
         
         enum shadow {
@@ -29,15 +34,10 @@ enum Resources {
         /// WHITE_DM_GRAY  | L: HEX: #FFFFFF | D: HEX: #1C1C1E
         static let whiteDMGray = Color("WhiteDMGray")
         
-        /// LIGHT_GRAY | L: HEX: #D3D3D3 | D: HEX: #D3D3D3
+        /// LIGHT_GRAY | L: HEX: #D3D3D3 | D: HEX: #424242
         static let alto = Color("Alto")
-        /// DARK_GRAY | L: HEX: #0B090A | D: HEX: #0B090A
+        /// DARK_GRAY | L: HEX: #0B090A | D: HEX: #FFFFFF
         static let codGray = Color("CodGray")
-        
-        /// LIGHT_RED | L: HEX: #E5383B | D: HEX: #E5383B
-        static let cinnabar = Color("Cinnabar")
-        /// RED | L: HEX: #E5383B | D: HEX: #E5383B
-        static let tamarillo = Color("Tamarillo")
         
         /// LIGHT_BLUE | L: HEX: #47A8BD | D: HEX: #2E4052
         static let pelorous = Color("Pelorous")

@@ -74,7 +74,7 @@ struct SportActivityListView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(action: self.viewModel.onPlusButtonClicked) {
                 R.image.apple.plus
-                    .foregroundColor(R.color.cinnabar)
+                    .foregroundColor(R.color.perm.cinnabar)
             }
         }
     }

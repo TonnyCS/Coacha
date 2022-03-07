@@ -23,10 +23,10 @@ struct SplashView: View {
                     LoginView(animation: self.animation, viewModel: LoginViewModel())
                 default:
                     LoadingView(color: R.color.perm.white)
-                        .zStackBackground(R.color.cinnabar)
+                        .zStackBackground(R.color.perm.cinnabar)
             }
         }
-        .zStackBackground(R.color.cinnabar)
+        .zStackBackground(R.color.perm.cinnabar)
         
         .onAppear {
             self.viewModel.appRouter = self.appRouter
@@ -45,7 +45,7 @@ fileprivate struct SplashView_Content: View {
             .toFitFrame(side: 70)
             .foregroundColor(R.color.perm.white)
             .matchedGeometryEffect(id: C.matchedGeometry.onboardingLogo, in: self.animation)
-            .zStackBackground(R.color.cinnabar)
+            .zStackBackground(R.color.perm.cinnabar)
     }
 }
 

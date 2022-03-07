@@ -106,7 +106,7 @@ struct CreateSportActivityView: View {
                     self.viewModel.dismissView()
                 }) {
                     Text("general.cancel".localized)
-                        .medium17(R.color.cinnabar)
+                        .medium17(R.color.perm.cinnabar)
                 }
             }
             
@@ -115,7 +115,7 @@ struct CreateSportActivityView: View {
                     self.viewModel.showConfirmationSheet()
                 }) {
                     Text("general.save".localized)
-                        .medium17(self.viewModel.saveButtonDisabled ? R.color.alto : R.color.cinnabar)
+                        .medium17(self.viewModel.saveButtonDisabled ? R.color.alto : R.color.perm.cinnabar)
                 }
                 .scaleableLinkStyle()
                 .disabled(self.viewModel.saveButtonDisabled)

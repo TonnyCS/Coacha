@@ -71,7 +71,7 @@ struct SearchLocationView: View {
                 self.viewModel.dismissView()
             }) {
                 Text("general.cancel".localized)
-                    .medium17(R.color.cinnabar)
+                    .medium17(R.color.perm.cinnabar)
             }
         }
     }

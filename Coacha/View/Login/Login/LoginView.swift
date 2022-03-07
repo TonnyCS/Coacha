@@ -22,7 +22,7 @@ struct LoginView: View {
                 LoginView_Content(animation: self.animation, viewModel: self.viewModel)
             }
         }
-        .zStackBackground(R.color.cinnabar)
+        .zStackBackground(R.color.perm.cinnabar)
         
         .onAppear {
             self.viewModel.appRouter = self.appRouter
@@ -56,14 +56,14 @@ fileprivate struct LoginView_Content: View { //var
                     self.viewModel.login()
                 }) {
                     Text("login.button.title".localized)
-                        .medium17(R.color.cinnabar)
+                        .medium17(R.color.perm.cinnabar)
                         .padding(.all, 16)
                         .commonBackground(R.color.perm.white)
                 }
                 .scaleableLinkStyle()
             }
         }
-        .zStackBackground(R.color.cinnabar)
+        .zStackBackground(R.color.perm.cinnabar)
         
         .alert(isPresented: self.$viewModel.showingAlert) {
             Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
