@@ -12,9 +12,10 @@ typealias Action = () -> ()
 final class SportActivityItemViewModel: ObservableObject {
     let name: String
     let place: String
-    let date: String
+    let dateString: String
     let durationString: String
-    let storageType: String
+    let storageIcon: Image
+    let backgroundColor: Color
     let removeAction: Action
     
     @Published var showingRemoveAlert: Bool = false
@@ -26,10 +27,12 @@ final class SportActivityItemViewModel: ObservableObject {
     init(name: String, place: String, date: Date, duration: DateDuration, isLocal: Bool, removeAction: @escaping Action) {
         self.name = name
         self.place = place
-        self.date = "\(date.get(.day)).\(date.get(.month)).\(date.get(.year))"
-        self.storageType = isLocal ? "general.local".localized : "general.remote".localized
+        self.dateString = "\(date.get(.day)).\(date.get(.month)).\(date.get(.year))"
         self.removeAction = removeAction
         self.durationString = "\(duration.hours) h. \(duration.minutes) min."
+        
+        self.storageIcon = isLocal ? R.image.apple.fill.iphoneCircle : R.image.apple.fill.icloudAndArrowUp
+        self.backgroundColor = isLocal ? R.color.pelorous : R.color.cinnabar
     }
 
     // MARK: - SWIPE

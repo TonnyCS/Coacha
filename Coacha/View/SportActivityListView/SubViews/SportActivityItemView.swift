@@ -21,8 +21,7 @@ struct SportActivityItemView: View {
                 .offset(x: self.viewModel.swipeOffset)
                 .gesture(
                     DragGesture()
-                        .updating(self.$isDragging, body: { value, state, _ in
-                            state = true
+                        .updating(self.$isDragging, body: { value, _, _ in
                             self.viewModel.onChanged(value: value)
                         })
                         .onEnded({ value in
@@ -39,36 +38,41 @@ struct SportActivityItemView: View {
     }
     
     private var cell: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 2) {
+        VStack(spacing: 16) {
+            HStack {
                 Text(self.viewModel.name)
-                    .medium17()
+                    .semibold32(R.color.perm.white)
+                
+                Spacer()
+                
+                self.viewModel.storageIcon
+                    .toFitFrame(side: 24)
+                    .foregroundColor(R.color.perm.white)
+            }
+            .padding(.trailing, 8)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text(self.viewModel.dateString)
+                        .regular16(R.color.perm.white)
+                    
+                    Spacer()
+                    
+                    Text(self.viewModel.durationString)
+                        .regular16(R.color.perm.white)
+                }
                 
                 Text(self.viewModel.place)
-                    .regular14(R.color.martini)
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 2) {
-                Text(self.viewModel.date)
-                    .regular12(R.color.martini)
-                
-                Text(self.viewModel.durationString)
-                    .regular12(R.color.martini)
-                
-                Text(self.viewModel.storageType)
-                    .regular12(R.color.martini)
+                    .medium16(R.color.perm.white)
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .commonBackground()
+        .padding(.all, 16)
+        .commonBackground(self.viewModel.backgroundColor, shadowColor: nil)
     }
     
     private var swipeButton: some View {
         Group {
-            R.color.cinnabar.cornerRadius(10)
+            R.color.tamarillo.cornerRadius(20)
             
             HStack {
                 Spacer()

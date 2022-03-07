@@ -19,18 +19,21 @@ extension View {
     ///     Radius: 1
     ///     X: 0
     ///     Y: 3
-    func commonBackground(_ color: Color = R.color.white, _ cornerRadius: CGFloat = 8, shadowColor: Color? = R.color.shadow.black016, shadowRadius: CGFloat = 6, shadowX: CGFloat = 0, shadowY: CGFloat = 3) -> some View { modifier(CommonBackground(color: color, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: shadowRadius, shadowX: shadowX, shadowY: shadowY)) }
+    func commonBackground(_ color: Color = R.color.white, _ cornerRadius: CGFloat = 20, shadowColor: Color? = R.color.shadow.black016, shadowRadius: CGFloat = 6, shadowX: CGFloat = 0, shadowY: CGFloat = 3) -> some View { modifier(CommonBackground(color: color, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: shadowRadius, shadowX: shadowX, shadowY: shadowY)) }
     
     // MARK: - FONTS
     func bold34(_ color: Color = R.color.codGray) -> some View { modifier(Bold34(color: color)) }
     
+    func semibold32(_ color: Color = R.color.codGray) -> some View { modifier(Semibold32(color: color)) }
     func semibold17(_ color: Color = R.color.codGray) -> some View { modifier(Semibold17(color: color)) }
     func semibold16(_ color: Color = R.color.codGray) -> some View { modifier(Semibold16(color: color)) }
     func semibold14(_ color: Color = R.color.codGray) -> some View { modifier(Semibold14(color: color)) }
     
     func medium17(_ color: Color = R.color.codGray) -> some View { modifier(Medium17(color: color)) }
+    func medium16(_ color: Color = R.color.codGray) -> some View { modifier(Medium16(color: color)) }
     func medium14(_ color: Color = R.color.codGray) -> some View { modifier(Medium14(color: color)) }
     
+    func regular16(_ color: Color = R.color.codGray) -> some View { modifier(Regular16(color: color)) }
     func regular14(_ color: Color = R.color.codGray) -> some View { modifier(Regular14(color: color)) }
     func regular13(_ color: Color = R.color.codGray) -> some View { modifier(Regular13(color: color)) }
     func regular12(_ color: Color = R.color.codGray) -> some View { modifier(Regular12(color: color)) }
@@ -86,6 +89,16 @@ fileprivate struct Bold34: ViewModifier {
 }
 
 // MARK: - SEMIBOLD
+fileprivate struct Semibold32: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content
+            .font(R.font.semibold32)
+            .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+    }
+}
+
 fileprivate struct Semibold17: ViewModifier {
     let color: Color
     func body(content: Content) -> some View {
@@ -125,6 +138,15 @@ fileprivate struct Medium17: ViewModifier {
     }
 }
 
+fileprivate struct Medium16: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content
+            .font(R.font.medium16)
+            .foregroundColor(color)
+    }
+}
+
 fileprivate struct Medium14: ViewModifier {
     let color: Color
     func body(content: Content) -> some View {
@@ -135,6 +157,16 @@ fileprivate struct Medium14: ViewModifier {
 }
 
 // MARK: - REGULAR
+fileprivate struct Regular16: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        content
+            .font(R.font.regular16)
+            .foregroundColor(color)
+            .multilineTextAlignment(.leading)
+    }
+}
+
 fileprivate struct Regular14: ViewModifier {
     let color: Color
     func body(content: Content) -> some View {

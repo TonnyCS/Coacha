@@ -41,7 +41,10 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
                 array = remoteDataStore.remoteSportActivity
         }
         
-        self.sportActivities = array.sorted(by: { $0.date > $1.date })
+        let sortedArray = array.sorted(by: { $0.date > $1.date })
+        withAnimation {
+            self.sportActivities = sortedArray
+        }
     }
     
     func deleteSportActivity(id: UUID, isLocal: Bool) {

@@ -38,6 +38,7 @@ class RemoteDataStore: ObservableObject {
                 }
                 
                 self.remoteSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> RemoteSportActivity? in
+                    debugPrint("REMOTE_DATA_STORE/getAllSportActivity: Success")
                     return try? queryDocumentSnapshot.data(as: RemoteSportActivity.self)
                 })
             }

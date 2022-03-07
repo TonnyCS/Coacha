@@ -11,8 +11,6 @@ typealias R = Resources
 
 // MARK: - COLOR_NAMING
 // https://chir.ag/projects/name-that-color
-// MARK: - COLOR_PALETTE
-// https://coolors.co/palette/0b090a-161a1d-660708-a4161a-ba181b-e5383b-b1a7a6-d3d3d3-f5f3f4-ffffff
 
 enum Resources {
     enum color {
@@ -50,6 +48,9 @@ enum Resources {
         static let tamarillo = Color("Tamarillo")
         /// DARK_RED | L: HEX: #E5383B | D: HEX: #E5383B
         static let darkBurgundy = Color("DarkBurgundy")
+        
+        /// LIGHT_BLUE | L: HEX: #47A8BD | D: HEX: #2E4052
+        static let pelorous = Color("Pelorous")
     }
     
     enum font {
@@ -57,15 +58,18 @@ enum Resources {
         static let bold34 = Font.system(size: 34, weight: .bold, design: .default)
         
         // MARK: - SEMIBOLD
+        static let semibold32 = Font.system(size: 32, weight: .semibold, design: .default)
         static let semibold17 = Font.system(size: 17, weight: .semibold, design: .default)
         static let semibold16 = Font.system(size: 16, weight: .semibold, design: .default)
         static let semibold14 = Font.system(size: 14, weight: .semibold, design: .default)
         
         // MARK: - MEDIUM
         static let medium17 = Font.system(size: 17, weight: .medium, design: .default)
+        static let medium16 = Font.system(size: 16, weight: .medium, design: .default)
         static let medium14 = Font.system(size: 14, weight: .medium, design: .default)
         
         // MARK: - REGULAR
+        static let regular16 = Font.system(size: 16, weight: .regular, design: .default)
         static let regular14 = Font.system(size: 14, weight: .regular, design: .default)
         static let regular13 = Font.system(size: 13, weight: .regular, design: .default)
         static let regular12 = Font.system(size: 12, weight: .regular, design: .default)
@@ -82,6 +86,8 @@ enum Resources {
             enum fill {
                 static let flag2Crossed = Image(systemName: "flag.2.crossed.fill")
                 static let multiplyCircle = Image(systemName: "multiply.circle.fill")
+                static let icloudAndArrowUp = Image(systemName: "icloud.and.arrow.up.fill")
+                static let iphoneCircle = Image(systemName: "iphone.circle.fill")
             }
         }
     }

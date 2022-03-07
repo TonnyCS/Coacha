@@ -62,7 +62,13 @@ struct SportActivityListView: View {
             self.viewModel.remoteDataStore = self.remoteDataStore
             self.viewModel.localDataStore = self.localDataStore
         }
-        .onReceive(self.viewModel.localDataStore.localSportActivity) { newValue in
+        .onChange(of: self.viewModel.storageType, perform: { _ in
+            self.viewModel.refreshArray()
+        })
+        .onReceive(self.viewModel.localDataStore.localSportActivity) { _ in
+            self.viewModel.refreshArray()
+        }
+        .onReceive(self.viewModel.remoteDataStore.objectWillChange) { _ in
             self.viewModel.refreshArray()
         }
     }
