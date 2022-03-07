@@ -63,7 +63,7 @@ struct SportActivityItemView: View {
                 }
                 
                 Text(self.viewModel.place)
-                    .medium16(R.color.perm.white)
+                    .medium17(R.color.perm.white)
             }
         }
         .padding(.all, 16)

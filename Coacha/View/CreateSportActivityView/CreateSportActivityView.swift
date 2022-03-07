@@ -26,7 +26,7 @@ struct CreateSportActivityView: View {
                                 .medium17()
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
-                                .commonBackground()
+                                .commonBackground(R.color.whiteDMGray)
                             
                             InteractableItemRow(title: "createSportActivity.place.title".localized, trailingCaption: self.viewModel.place?.place.name) {
                                 self.viewModel.showLocationSheet()
@@ -40,6 +40,7 @@ struct CreateSportActivityView: View {
                     }
                 }
             }
+            .zStackBackground(R.color.white)
             
             .navigationBarTitle("createSportActivity.title".localized)
             .toolbar { self.toolbarButtons }
@@ -105,7 +106,7 @@ struct CreateSportActivityView: View {
                     self.viewModel.dismissView()
                 }) {
                     Text("general.cancel".localized)
-                        .medium14(R.color.cinnabar)
+                        .medium17(R.color.cinnabar)
                 }
             }
             
@@ -114,7 +115,7 @@ struct CreateSportActivityView: View {
                     self.viewModel.showConfirmationSheet()
                 }) {
                     Text("general.save".localized)
-                        .medium14(self.viewModel.saveButtonDisabled ? R.color.martini : R.color.cinnabar)
+                        .medium17(self.viewModel.saveButtonDisabled ? R.color.alto : R.color.cinnabar)
                 }
                 .scaleableLinkStyle()
                 .disabled(self.viewModel.saveButtonDisabled)

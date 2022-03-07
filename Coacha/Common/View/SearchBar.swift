@@ -15,7 +15,7 @@ struct SearchBar: View {
     var body: some View {
         HStack(spacing: 10) {
             R.image.apple.magnifyingglass
-                .foregroundColor(R.color.martini)
+                .foregroundColor(R.color.alto)
             
             TextField("general.search".localized, text: self.$searchText)
                 .submitLabel(.search)
@@ -33,12 +33,13 @@ struct SearchBar: View {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
                     R.image.apple.fill.multiplyCircle
-                        .foregroundColor(R.color.martini)
+                        .foregroundColor(R.color.alto)
                 }
             }
         }
-        .padding(.all, 8)
-        .commonBackground()
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .commonBackground(R.color.whiteDMGray)
     }
 }
 

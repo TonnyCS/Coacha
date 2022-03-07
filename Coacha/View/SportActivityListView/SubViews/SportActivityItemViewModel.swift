@@ -29,7 +29,16 @@ final class SportActivityItemViewModel: ObservableObject {
         self.place = place
         self.dateString = "\(date.get(.day)).\(date.get(.month)).\(date.get(.year))"
         self.removeAction = removeAction
-        self.durationString = "\(duration.hours) h. \(duration.minutes) min."
+        
+        var durationPreparationString = ""
+        if duration.hours != 0 {
+            durationPreparationString.append("\(duration.hours) h")
+        }
+        
+        if duration.minutes != 0 {
+            durationPreparationString.append(" \(duration.minutes) m")
+        }
+        self.durationString = durationPreparationString
         
         self.storageIcon = isLocal ? R.image.apple.fill.iphoneCircle : R.image.apple.fill.icloudAndArrowUp
         self.backgroundColor = isLocal ? R.color.pelorous : R.color.cinnabar

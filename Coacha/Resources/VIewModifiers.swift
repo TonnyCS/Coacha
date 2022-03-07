@@ -40,18 +40,11 @@ extension View {
     func bold34(_ color: Color = R.color.codGray) -> some View { modifier(Bold34(color: color)) }
     
     func semibold32(_ color: Color = R.color.codGray) -> some View { modifier(Semibold32(color: color)) }
-    func semibold17(_ color: Color = R.color.codGray) -> some View { modifier(Semibold17(color: color)) }
-    func semibold16(_ color: Color = R.color.codGray) -> some View { modifier(Semibold16(color: color)) }
-    func semibold14(_ color: Color = R.color.codGray) -> some View { modifier(Semibold14(color: color)) }
     
     func medium17(_ color: Color = R.color.codGray) -> some View { modifier(Medium17(color: color)) }
-    func medium16(_ color: Color = R.color.codGray) -> some View { modifier(Medium16(color: color)) }
-    func medium14(_ color: Color = R.color.codGray) -> some View { modifier(Medium14(color: color)) }
     
     func regular16(_ color: Color = R.color.codGray) -> some View { modifier(Regular16(color: color)) }
     func regular14(_ color: Color = R.color.codGray) -> some View { modifier(Regular14(color: color)) }
-    func regular13(_ color: Color = R.color.codGray) -> some View { modifier(Regular13(color: color)) }
-    func regular12(_ color: Color = R.color.codGray) -> some View { modifier(Regular12(color: color)) }
     func regular10(_ color: Color = R.color.codGray) -> some View { modifier(Regular10(color: color)) }
     
     // MARK: - BUTTON_STYLES
@@ -114,59 +107,12 @@ fileprivate struct Semibold32: ViewModifier {
     }
 }
 
-fileprivate struct Semibold17: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.semibold17)
-            .foregroundColor(color)
-            .multilineTextAlignment(.center)
-    }
-}
-
-fileprivate struct Semibold16: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.semibold16)
-            .foregroundColor(color)
-            .multilineTextAlignment(.center)
-    }
-}
-
-fileprivate struct Semibold14: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.semibold14)
-            .foregroundColor(color)
-    }
-}
-
 // MARK: - MEDIUM
 fileprivate struct Medium17: ViewModifier {
     let color: Color
     func body(content: Content) -> some View {
         content
             .font(R.font.medium17)
-            .foregroundColor(color)
-    }
-}
-
-fileprivate struct Medium16: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.medium16)
-            .foregroundColor(color)
-    }
-}
-
-fileprivate struct Medium14: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.medium14)
             .foregroundColor(color)
     }
 }
@@ -187,26 +133,6 @@ fileprivate struct Regular14: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(R.font.regular14)
-            .foregroundColor(color)
-            .multilineTextAlignment(.leading)
-    }
-}
-
-fileprivate struct Regular13: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.regular13)
-            .foregroundColor(color)
-            .multilineTextAlignment(.leading)
-    }
-}
-
-fileprivate struct Regular12: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-        content
-            .font(R.font.regular12)
             .foregroundColor(color)
             .multilineTextAlignment(.leading)
     }

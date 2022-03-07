@@ -58,7 +58,7 @@ fileprivate struct LoginView_Content: View { //var
                     Text("login.button.title".localized)
                         .medium17(R.color.cinnabar)
                         .padding(.all, 16)
-                        .commonBackground()
+                        .commonBackground(R.color.perm.white)
                 }
                 .scaleableLinkStyle()
             }

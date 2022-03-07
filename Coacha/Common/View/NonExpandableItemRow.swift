@@ -22,7 +22,7 @@ struct NonExpandableItemRow<Content: View>: View {
     var body: some View {
         HStack {
             Text(title)
-                .medium17(R.color.martini)
+                .medium17()
             
             Spacer()
             
@@ -30,7 +30,7 @@ struct NonExpandableItemRow<Content: View>: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
-        .commonBackground()
+        .commonBackground(R.color.whiteDMGray)
     }
 }
 

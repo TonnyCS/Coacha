@@ -31,7 +31,7 @@ struct InteractableItemRow: View {
             HStack(spacing: 8) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
-                        .medium17(R.color.martini)
+                        .medium17()
                     
                     if let subtitle = subtitle {
                         Text(subtitle)
@@ -49,11 +49,11 @@ struct InteractableItemRow: View {
 
                 R.image.apple.chevronRight
                     .toFitFrame(side: 11)
-                    .foregroundColor(R.color.martini)
+                    .foregroundColor(R.color.alto)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
-            .commonBackground()
+            .commonBackground(R.color.whiteDMGray)
         }
         .scaleableLinkStyle()
     }

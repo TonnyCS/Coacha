@@ -68,9 +68,6 @@ struct SportActivityListView: View {
         .onReceive(self.viewModel.localDataStore.localSportActivity) { _ in
             self.viewModel.refreshArray()
         }
-        .onReceive(self.viewModel.remoteDataStore.objectWillChange) { _ in
-            self.viewModel.refreshArray()
-        }
     }
     
     private var toolbarButtons: some ToolbarContent {

@@ -17,8 +17,6 @@ enum Resources {
         enum perm {
             /// WHITE | HEX: #FFFFFF
             static let white = Color("Perm_White")
-            /// BLACK | HEX: #000000
-            static let black = Color("Perm_Black")
         }
         
         enum shadow {
@@ -28,17 +26,11 @@ enum Resources {
         
         /// WHITE  | L: HEX: #FFFFFF | D: HEX: #000000
         static let white = Color("White")
-        /// BLACK | L: HEX: #000000 | D: HEX: #FFFFFF
-        static let black = Color("Black")
+        /// WHITE_DM_GRAY  | L: HEX: #FFFFFF | D: HEX: #1C1C1E
+        static let whiteDMGray = Color("WhiteDMGray")
         
         /// LIGHT_GRAY | L: HEX: #D3D3D3 | D: HEX: #D3D3D3
         static let alto = Color("Alto")
-        /// LIGHT_GRAY | L: HEX: #F5F3F4 | D: HEX: #F5F3F4
-        static let bonJour = Color("Alto")
-        /// GRAY | L: HEX: #B1A7A6 | D: HEX: #B1A7A6
-        static let martini = Color("Martini")
-        /// DARK_GRAY | L: HEX: #161A1D | D: HEX: #161A1D
-        static let woodsmoke = Color("Woodsmoke")
         /// DARK_GRAY | L: HEX: #0B090A | D: HEX: #0B090A
         static let codGray = Color("CodGray")
         
@@ -46,8 +38,6 @@ enum Resources {
         static let cinnabar = Color("Cinnabar")
         /// RED | L: HEX: #E5383B | D: HEX: #E5383B
         static let tamarillo = Color("Tamarillo")
-        /// DARK_RED | L: HEX: #E5383B | D: HEX: #E5383B
-        static let darkBurgundy = Color("DarkBurgundy")
         
         /// LIGHT_BLUE | L: HEX: #47A8BD | D: HEX: #2E4052
         static let pelorous = Color("Pelorous")
@@ -59,20 +49,13 @@ enum Resources {
         
         // MARK: - SEMIBOLD
         static let semibold32 = Font.system(size: 32, weight: .semibold, design: .default)
-        static let semibold17 = Font.system(size: 17, weight: .semibold, design: .default)
-        static let semibold16 = Font.system(size: 16, weight: .semibold, design: .default)
-        static let semibold14 = Font.system(size: 14, weight: .semibold, design: .default)
         
         // MARK: - MEDIUM
         static let medium17 = Font.system(size: 17, weight: .medium, design: .default)
-        static let medium16 = Font.system(size: 16, weight: .medium, design: .default)
-        static let medium14 = Font.system(size: 14, weight: .medium, design: .default)
         
         // MARK: - REGULAR
         static let regular16 = Font.system(size: 16, weight: .regular, design: .default)
         static let regular14 = Font.system(size: 14, weight: .regular, design: .default)
-        static let regular13 = Font.system(size: 13, weight: .regular, design: .default)
-        static let regular12 = Font.system(size: 12, weight: .regular, design: .default)
         static let regular10 = Font.system(size: 10, weight: .regular, design: .default)
     }
     

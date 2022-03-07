@@ -50,6 +50,7 @@ struct SearchLocationView: View {
                 }
             }
             .padding(.top, 16)
+            .zStackBackground(R.color.white)
             
             .navigationTitle(Text("searchLocation.title".localized))
             .toolbar { self.toolbarButtons }
@@ -70,7 +71,7 @@ struct SearchLocationView: View {
                 self.viewModel.dismissView()
             }) {
                 Text("general.cancel".localized)
-                    .medium14(R.color.cinnabar)
+                    .medium17(R.color.cinnabar)
             }
         }
     }
