@@ -29,18 +29,19 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     
     func refreshArray() {
         var array = [SportActivity]()
-        
+
         let localSportActivity = localDataStore.localSportActivity.value.map { $0.sportActivity }
-        
+        let remoteSportActivity = remoteDataStore.remoteSportActivity.value
+
         switch storageType {
             case .all:
-                array = remoteDataStore.remoteSportActivity + localSportActivity
+                array = remoteSportActivity + localSportActivity
             case .local:
                 array = localSportActivity
             case .remote:
-                array = remoteDataStore.remoteSportActivity
+                array = remoteSportActivity
         }
-        
+
         let sortedArray = array.sorted(by: { $0.date > $1.date })
         withAnimation(.easeInOut(duration: 0.3)) {
             self.sportActivities = sortedArray

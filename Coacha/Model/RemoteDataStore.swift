@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 import Firebase
 import FirebaseFirestoreSwift
 
 class RemoteDataStore: ObservableObject {
     private var db = Firestore.firestore()
     
-    @Published private(set) var remoteSportActivity = [SportActivity]()
+    var remoteSportActivity = CurrentValueSubject<[RemoteSportActivity], Never>([])
     
     // MARK: - GET
     func getAllSportActivity() {
@@ -37,7 +38,7 @@ class RemoteDataStore: ObservableObject {
                     return
                 }
                 
-                self.remoteSportActivity = documents.compactMap({ (queryDocumentSnapshot) -> RemoteSportActivity? in
+                self.remoteSportActivity.value = documents.compactMap({ (queryDocumentSnapshot) -> RemoteSportActivity? in
                     debugPrint("REMOTE_DATA_STORE/getAllSportActivity: Success")
                     return try? queryDocumentSnapshot.data(as: RemoteSportActivity.self)
                 })

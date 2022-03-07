@@ -66,10 +66,15 @@ struct SportActivityListView: View {
         .onAppear {
             self.viewModel.remoteDataStore = self.remoteDataStore
             self.viewModel.localDataStore = self.localDataStore
-        }
-        .onChange(of: self.viewModel.storageType, perform: { _ in
+            
             self.viewModel.refreshArray()
-        })
+        }
+        .onChange(of: self.viewModel.storageType) { _ in
+            self.viewModel.refreshArray()
+        }
+        .onReceive(self.viewModel.remoteDataStore.remoteSportActivity) { _ in
+            self.viewModel.refreshArray()
+        }
         .onReceive(self.viewModel.localDataStore.localSportActivity) { _ in
             self.viewModel.refreshArray()
         }
@@ -82,12 +87,6 @@ struct SportActivityListView: View {
                     .foregroundColor(R.color.perm.cinnabar)
             }
         }
-    }
-    
-    func getIndex(for thisSportActivity: SportActivity) -> Int {
-        return self.viewModel.sportActivities.firstIndex { sportActivity in
-            return sportActivity.id == thisSportActivity.id
-        } ?? 0
     }
 }
 

@@ -33,7 +33,7 @@ class LocalDataStore: NSObject, ObservableObject {
         do {
             try sportActivityFetchController.performFetch()
             debugPrint("LOCAL_STORAGE/performFetchOfSportActivity: Success")
-            localSportActivity.value = sportActivityFetchController.fetchedObjects ?? []
+            self.localSportActivity.value = sportActivityFetchController.fetchedObjects ?? []
         } catch {
             debugPrint("LOCAL_STORAGE/performFetchOfSportActivity: Error \(error.localizedDescription)")
         }
