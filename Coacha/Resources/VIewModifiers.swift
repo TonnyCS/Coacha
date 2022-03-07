@@ -37,15 +37,15 @@ extension View {
         }
     
     // MARK: - FONTS
-    func bold34(_ color: Color = R.color.codGray) -> some View { modifier(Bold34(color: color)) }
+    func bold34(_ color: Color = R.color.codGray, alignment: TextAlignment = .leading) -> some View { modifier(Bold34(color: color, textAlignment: alignment)) }
     
-    func semibold32(_ color: Color = R.color.codGray) -> some View { modifier(Semibold32(color: color)) }
+    func semibold32(_ color: Color = R.color.codGray, alignment: TextAlignment = .leading) -> some View { modifier(Semibold32(color: color, textAlignment: alignment)) }
     
-    func medium17(_ color: Color = R.color.codGray) -> some View { modifier(Medium17(color: color)) }
+    func medium17(_ color: Color = R.color.codGray, alignment: TextAlignment = .leading) -> some View { modifier(Medium17(color: color, textAlignment: alignment)) }
     
-    func regular16(_ color: Color = R.color.codGray) -> some View { modifier(Regular16(color: color)) }
-    func regular14(_ color: Color = R.color.codGray) -> some View { modifier(Regular14(color: color)) }
-    func regular10(_ color: Color = R.color.codGray) -> some View { modifier(Regular10(color: color)) }
+    func regular16(_ color: Color = R.color.codGray, alignment: TextAlignment = .leading) -> some View { modifier(Regular16(color: color, textAlignment: alignment)) }
+    func regular14(_ color: Color = R.color.codGray, alignment: TextAlignment = .leading) -> some View { modifier(Regular14(color: color, textAlignment: alignment)) }
+    func regular10(_ color: Color = R.color.codGray, alignment: TextAlignment = .leading) -> some View { modifier(Regular10(color: color, textAlignment: alignment)) }
     
     // MARK: - BUTTON_STYLES
     func scaleableLinkStyle() -> some View { buttonStyle(ScaleableLinkStyle()) }
@@ -87,65 +87,77 @@ fileprivate struct CommonBackground: ViewModifier {
 // MARK: - BOLD
 fileprivate struct Bold34: ViewModifier {
     let color: Color
+    let textAlignment: TextAlignment
+    
     func body(content: Content) -> some View {
         content
             .lineLimit(2)
             .font(R.font.bold34)
             .foregroundColor(color)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(textAlignment)
     }
 }
 
 // MARK: - SEMIBOLD
 fileprivate struct Semibold32: ViewModifier {
     let color: Color
+    let textAlignment: TextAlignment
+    
     func body(content: Content) -> some View {
         content
             .font(R.font.semibold32)
             .foregroundColor(color)
-            .multilineTextAlignment(.leading)
+            .multilineTextAlignment(textAlignment)
     }
 }
 
 // MARK: - MEDIUM
 fileprivate struct Medium17: ViewModifier {
     let color: Color
+    let textAlignment: TextAlignment
+    
     func body(content: Content) -> some View {
         content
             .font(R.font.medium17)
             .foregroundColor(color)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(textAlignment)
     }
 }
 
 // MARK: - REGULAR
 fileprivate struct Regular16: ViewModifier {
     let color: Color
+    let textAlignment: TextAlignment
+    
     func body(content: Content) -> some View {
         content
             .font(R.font.regular16)
             .foregroundColor(color)
-            .multilineTextAlignment(.leading)
+            .multilineTextAlignment(textAlignment)
     }
 }
 
 fileprivate struct Regular14: ViewModifier {
     let color: Color
+    let textAlignment: TextAlignment
+    
     func body(content: Content) -> some View {
         content
             .font(R.font.regular14)
             .foregroundColor(color)
-            .multilineTextAlignment(.leading)
+            .multilineTextAlignment(textAlignment)
     }
 }
 
 fileprivate struct Regular10: ViewModifier {
     let color: Color
+    let textAlignment: TextAlignment
+    
     func body(content: Content) -> some View {
         content
             .font(R.font.regular10)
             .foregroundColor(color)
-            .multilineTextAlignment(.leading)
+            .multilineTextAlignment(textAlignment)
     }
 }
 

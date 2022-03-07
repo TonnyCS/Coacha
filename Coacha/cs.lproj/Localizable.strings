@@ -25,15 +25,15 @@
 "general.no" = "Ne";
 
 // MARK: - LOGIN
-"login.button.title" = "Začněme!";
+"login.button.title" = "Začít!";
 
 // MARK: - SPORT_ACTIVITY_LIST
 "sportActivityList.title" = "Sportovní aktivity";
-"sportActivityList.empty.title" = "Nemáte uložené žádné aktivity! 😳\nAktivitu můžete přidat pomocí plus tlačítka na hodní straně.";
+"sportActivityList.empty.title" = "Nemáte uložené žádné aktivity! 😳\nAktivitu můžete přidat pomocí tlačítka plus na horní straně.";
 
 // MARK: - CREATE_SPORT_ACTIVITY
 "createSportActivity.title" = "Přidat aktivitu";
-"createSportActivity.name.placeholder" = "Nazev aktivity";
+"createSportActivity.name.placeholder" = "Název aktivity";
 "createSportActivity.place.title" = "Místo aktivity";
 "createSportActivity.duration.title" = "Doba trvání aktivity";
 "createSportActivity.storage.dialog.title" = "Vyberte uložiště:";

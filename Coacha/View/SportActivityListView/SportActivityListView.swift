@@ -28,8 +28,7 @@ struct SportActivityListView: View {
                     .pickerStyle(.segmented)
                     
                     if self.viewModel.sportActivities.isEmpty {
-                        Text("sportActivityList.empty.title".localized)
-                            .medium17()
+                        emptyView
                     } else {
                         ForEach(self.viewModel.sportActivities, id: \.id) { sportActivity in
                             SportActivityItemView(
@@ -78,6 +77,12 @@ struct SportActivityListView: View {
         .onReceive(self.viewModel.localDataStore.localSportActivity) { _ in
             self.viewModel.refreshArray()
         }
+    }
+    
+    private var emptyView: some View {
+        Text("sportActivityList.empty.title".localized)
+            .medium17(R.color.alto, alignment: .center)
+            .padding(.top, 16)
     }
     
     private var toolbarButtons: some ToolbarContent {

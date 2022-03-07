@@ -69,7 +69,7 @@ enum Resources {
             enum fill {
                 static let flag2Crossed = Image(systemName: "flag.2.crossed.fill")
                 static let multiplyCircle = Image(systemName: "multiply.circle.fill")
-                static let icloudAndArrowUp = Image(systemName: "icloud.and.arrow.up.fill")
+                static let icloudCircle = Image(systemName: "icloud.circle.fill")
                 static let iphoneCircle = Image(systemName: "iphone.circle.fill")
             }
         }

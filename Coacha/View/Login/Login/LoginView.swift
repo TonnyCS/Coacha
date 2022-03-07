@@ -46,10 +46,10 @@ fileprivate struct LoginView_Content: View { //var
             VStack(spacing: 48) {
                 VStack(alignment: .trailing, spacing: 4) {
                     Text("general.appname".localized)
-                        .bold34(R.color.perm.white)
+                        .bold34(R.color.perm.white, alignment: .center)
                     
                     Text(C.app.appVersion)
-                        .regular10(R.color.alto)
+                        .regular10(R.color.perm.white)
                 }
                 
                 Button(action: {

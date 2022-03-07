@@ -40,7 +40,7 @@ final class SportActivityItemViewModel: ObservableObject {
         }
         self.durationString = durationPreparationString
         
-        self.storageIcon = isLocal ? R.image.apple.fill.iphoneCircle : R.image.apple.fill.icloudAndArrowUp
+        self.storageIcon = isLocal ? R.image.apple.fill.iphoneCircle : R.image.apple.fill.icloudCircle
         self.backgroundColor = isLocal ? R.color.pelorous : R.color.perm.cinnabar
     }
 
