@@ -10,7 +10,7 @@ import Combine
 import CoreData
 
 class LocalDataStore: NSObject, ObservableObject {
-    var allSportActivity = CurrentValueSubject<[SportActivityCD], Never>([])
+    var localSportActivity = CurrentValueSubject<[SportActivityCD], Never>([])
     private let sportActivityFetchController: NSFetchedResultsController<SportActivityCD>
     
     override init() {
@@ -33,7 +33,7 @@ class LocalDataStore: NSObject, ObservableObject {
         do {
             try sportActivityFetchController.performFetch()
             debugPrint("LOCAL_STORAGE/performFetchOfSportActivity: Success")
-            allSportActivity.value = sportActivityFetchController.fetchedObjects ?? []
+            localSportActivity.value = sportActivityFetchController.fetchedObjects ?? []
         } catch {
             debugPrint("LOCAL_STORAGE/performFetchOfSportActivity: Error \(error.localizedDescription)")
         }
@@ -54,7 +54,7 @@ class LocalDataStore: NSObject, ObservableObject {
     }
     
     func delete(id: UUID, completion: @escaping (Result<UUID, Error>) -> Void) {
-        guard let saToBeRemoved = allSportActivity.value.first(where: { $0.id == id }) else {
+        guard let saToBeRemoved = localSportActivity.value.first(where: { $0.id == id }) else {
             debugPrint("LOCAL_STORAGE/delete: Error: ID Not found")
             return
         }
@@ -87,7 +87,7 @@ extension LocalDataStore: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard let allSportActivity = controller.fetchedObjects as? [SportActivityCD] else { return }
         debugPrint("LOCAL_STORAGE/controllerDidChangeContent: Updating")
-        self.allSportActivity.value = allSportActivity
+        self.localSportActivity.value = allSportActivity
     }
 }
 

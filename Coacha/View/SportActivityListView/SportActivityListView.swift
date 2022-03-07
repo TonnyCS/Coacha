@@ -27,7 +27,7 @@ struct SportActivityListView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    ForEach(self.viewModel.getArray(), id: \.id) { sportActivity in
+                    ForEach(self.viewModel.sportActivities, id: \.id) { sportActivity in
                         SportActivityItemView(
                             viewModel: SportActivityItemViewModel(
                                 name: sportActivity.name,
@@ -57,9 +57,13 @@ struct SportActivityListView: View {
         .alert(isPresented: self.$viewModel.showingAlert) {
             Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
         }
+        
         .onAppear {
             self.viewModel.remoteDataStore = self.remoteDataStore
             self.viewModel.localDataStore = self.localDataStore
+        }
+        .onReceive(self.viewModel.localDataStore.localSportActivity) { newValue in
+            self.viewModel.refreshArray()
         }
     }
     

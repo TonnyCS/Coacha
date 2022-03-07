@@ -18,20 +18,19 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
     @ObservedObject var localDataStore: LocalDataStore = LocalDataStore()
     
+    @Published var sportActivities: [SportActivity] = []
+    
     @Published var storageType: StorageType = .all
     @Published var showingNewSportActivityView: Bool = false
-    
-    @Published var allSportActivity: [SportActivity] = []
     
     override init() {
         super.init()
     }
     
-    func getArray() -> [SportActivity] {
+    func refreshArray() {
         var array = [SportActivity]()
         
-        
-        let localSportActivity = localDataStore.allSportActivity.value.map { $0.sportActivity }
+        let localSportActivity = localDataStore.localSportActivity.value.map { $0.sportActivity }
         
         switch storageType {
             case .all:
@@ -42,8 +41,7 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
                 array = remoteDataStore.remoteSportActivity
         }
         
-        let sortedArray = array.sorted(by: { $0.date > $1.date })
-        return sortedArray
+        self.sportActivities = array.sorted(by: { $0.date > $1.date })
     }
     
     func deleteSportActivity(id: UUID, isLocal: Bool) {

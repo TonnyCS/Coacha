@@ -17,7 +17,7 @@ class RemoteDataStore: ObservableObject {
     // MARK: - GET
     func getAllSportActivity() {
         guard let userID = Auth.auth().currentUser?.uid else {
-            debugPrint("DATA_STORE/getAllSportActivity: Error: No userID")
+            debugPrint("REMOTE_DATA_STORE/getAllSportActivity: Error: No userID")
             return
         }
         
@@ -28,12 +28,12 @@ class RemoteDataStore: ObservableObject {
             .order(by: C.dataStore.key.sportActivity.date)
             .addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
-                    debugPrint("DATA_STORE/getAllSportActivity: Error \(error.localizedDescription)")
+                    debugPrint("REMOTE_DATA_STORE/getAllSportActivity: Error \(error.localizedDescription)")
                     return
                 }
                 
                 guard let documents = querySnapshot?.documents else {
-                    debugPrint("DATA_STORE/getAllSportActivity: Error: NO DOCUMENTS FOUND")
+                    debugPrint("REMOTE_DATA_STORE/getAllSportActivity: Error: NO DOCUMENTS FOUND")
                     return
                 }
                 
@@ -46,7 +46,7 @@ class RemoteDataStore: ObservableObject {
     // MARK: - PUT
     func putSportActivity(sportActivity: RemoteSportActivity, completion: @escaping (Result<RemoteSportActivity, Error>) -> Void) {
         guard let userID = Auth.auth().currentUser?.uid else {
-            debugPrint("DATA_STORE/putSportActivity: Error: No userID")
+            debugPrint("REMOTE_DATA_STORE/putSportActivity: Error: No userID")
             return
         }
 
@@ -58,11 +58,11 @@ class RemoteDataStore: ObservableObject {
                 .document(sportActivity.id.uuidString)
                 .setData(from: sportActivity)
             
-            debugPrint("DATA_STORE/putSportActivity: Success: \(sportActivity.id.uuidString), userID: \(userID)")
+            debugPrint("REMOTE_DATA_STORE/putSportActivity: Success: \(sportActivity.id.uuidString), userID: \(userID)")
             completion(.success(sportActivity))
             
         } catch {
-            debugPrint("DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
+            debugPrint("REMOTE_DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
             completion(.failure(error))
         }
     }
@@ -70,7 +70,7 @@ class RemoteDataStore: ObservableObject {
     // MARK: - REMOVE
     func deleteSportActivity(id: UUID, completion: @escaping (Result<UUID, Error>) -> Void) {
         guard let userID = Auth.auth().currentUser?.uid else {
-            debugPrint("DATA_STORE/deleteSportActivity: Error: No userID")
+            debugPrint("REMOTE_DATA_STORE/deleteSportActivity: Error: No userID")
             return
         }
         
@@ -81,10 +81,10 @@ class RemoteDataStore: ObservableObject {
             .document(id.uuidString)
             .delete() { error in
                 if let error = error {
-                    debugPrint("DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
+                    debugPrint("REMOTE_DATA_STORE/putSportActivity: Error: \(error.localizedDescription)")
                     completion(.failure(error))
                 } else {
-                    debugPrint("DATA_STORE/putSportActivity: Success")
+                    debugPrint("REMOTE_DATA_STORE/putSportActivity: Success")
                     completion(.success(id))
                 }
             }
