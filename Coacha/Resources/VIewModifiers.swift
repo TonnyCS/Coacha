@@ -19,7 +19,22 @@ extension View {
     ///     Radius: 1
     ///     X: 0
     ///     Y: 3
-    func commonBackground(_ color: Color = R.color.white, _ cornerRadius: CGFloat = 20, shadowColor: Color? = R.color.shadow.black016, shadowRadius: CGFloat = 6, shadowX: CGFloat = 0, shadowY: CGFloat = 3) -> some View { modifier(CommonBackground(color: color, cornerRadius: cornerRadius, shadowColor: shadowColor, shadowRadius: shadowRadius, shadowX: shadowX, shadowY: shadowY)) }
+    func commonBackground(
+        _ color: Color = R.color.white,
+        _ cornerRadius: CGFloat = 20,
+        shadowColor: Color? = R.color.shadow.black010,
+        shadowRadius: CGFloat = 6,
+        shadowX: CGFloat = 0,
+        shadowY: CGFloat = 3) -> some View {
+            modifier(CommonBackground(
+                color: color,
+                cornerRadius: cornerRadius,
+                shadowColor: shadowColor,
+                shadowRadius: shadowRadius,
+                shadowX: shadowX,
+                shadowY: shadowY
+            ))
+        }
     
     // MARK: - FONTS
     func bold34(_ color: Color = R.color.codGray) -> some View { modifier(Bold34(color: color)) }

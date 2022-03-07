@@ -22,8 +22,8 @@ enum Resources {
         }
         
         enum shadow {
-            /// BLACK_16% | HEX: #000000 O: 16%
-            static let black016 = Color("ShadowBlack016")
+            /// BLACK_10% | HEX: #000000 O: 10%
+            static let black010 = Color("ShadowBlack010")
         }
         
         /// WHITE  | L: HEX: #FFFFFF | D: HEX: #000000

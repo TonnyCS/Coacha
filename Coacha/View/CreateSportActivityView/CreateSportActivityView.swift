@@ -23,6 +23,7 @@ struct CreateSportActivityView: View {
                     ScrollView {
                         VStack(spacing: 16) {
                             TextField("name_tf", text: self.$viewModel.name, prompt: Text("createSportActivity.name.placeholder".localized))
+                                .medium17()
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 12)
                                 .commonBackground()
@@ -66,30 +67,34 @@ struct CreateSportActivityView: View {
     }
     
     private var durationPicker: some View {
-        VStack(alignment: .trailing, spacing: 4) {
-            HStack(spacing: 4) {
+        VStack(alignment: .leading, spacing: 8) {
+            Menu {
                 Picker("hour_picker", selection: self.$viewModel.duration.hours) {
                     ForEach(0 ..< 24, id:\.self) { value in
-                        Text(String(value))
+                        Text(String(value)).tag(value)
                     }
                 }
-                .pickerStyle(.menu)
-                .commonBackground(R.color.alto, shadowColor: nil)
-                
-                Text("h.")
+            } label: {
+                Text("\(self.viewModel.duration.hours) h")
+                    .medium17()
             }
-            
-            HStack(spacing: 4) {
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .commonBackground(R.color.alto, 6, shadowColor: nil)
+
+            Menu {
                 Picker("minute_picker", selection: self.$viewModel.duration.minutes) {
                     ForEach(0 ..< 60, id:\.self) { value in
-                        Text(String(value))
+                        Text(String(value)).tag(value)
                     }
                 }
-                .pickerStyle(.menu)
-                .commonBackground(R.color.alto, shadowColor: nil)
-                
-                Text("min.".localized)
+            } label: {
+                Text("\(self.viewModel.duration.minutes) min")
+                    .medium17()
             }
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .commonBackground(R.color.alto, 6, shadowColor: nil)
         }
     }
     

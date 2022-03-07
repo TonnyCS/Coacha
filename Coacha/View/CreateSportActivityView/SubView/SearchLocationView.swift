@@ -45,11 +45,11 @@ struct SearchLocationView: View {
                             }
                         }
                     }
-                    .padding(.horizontal, 16)
+                    .padding([.horizontal, .bottom], 16)
                     .animation(.easeInOut, value: self.viewModel.searchText)
                 }
             }
-            .padding(.vertical, 16)
+            .padding(.top, 16)
             
             .navigationTitle(Text("searchLocation.title".localized))
             .toolbar { self.toolbarButtons }
