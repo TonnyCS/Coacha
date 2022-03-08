@@ -10,6 +10,7 @@ import SwiftUI
 struct SportActivityListView: View {
     @EnvironmentObject var remoteDataStore: RemoteDataStore
     @EnvironmentObject var localDataStore: LocalDataStore
+    @EnvironmentObject var appRouter: AppRouter
     
     @StateObject var viewModel: SportActivityListViewModel
     
@@ -58,6 +59,8 @@ struct SportActivityListView: View {
         }
         .navigationViewStyle(.stack)
         
+        .toast(isPresented: self.$appRouter.showingToast, toast: self.appRouter.toast)
+        
         .alert(isPresented: self.$viewModel.showingAlert) {
             Alert(title: Text(self.viewModel.alertTitle), message: Text(self.viewModel.alertMessage), dismissButton: .default(Text("general.cancel".localized)))
         }
@@ -65,6 +68,7 @@ struct SportActivityListView: View {
         .onAppear {
             self.viewModel.remoteDataStore = self.remoteDataStore
             self.viewModel.localDataStore = self.localDataStore
+            self.viewModel.appRouter = self.appRouter
             
             self.viewModel.refreshArray()
         }

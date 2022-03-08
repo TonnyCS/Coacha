@@ -17,6 +17,7 @@ enum StorageType: Int {
 final class SportActivityListViewModel: CommonErrorHandlingViewModel {
     @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
     @ObservedObject var localDataStore: LocalDataStore = LocalDataStore()
+    @ObservedObject var appRouter: AppRouter = AppRouter()
     
     @Published var sportActivities: [SportActivity] = []
     
@@ -56,22 +57,22 @@ final class SportActivityListViewModel: CommonErrorHandlingViewModel {
         }
     }
     
-    private func deleteLocalActivity(id: UUID) {
-        self.localDataStore.delete(id: id) { result in
+    private func deleteRemoteActivity(id: UUID) {
+        self.remoteDataStore.deleteSportActivity(id: id) { result in
             switch result {
                 case .success(_):
-                    debugPrint("SPORT_ACTIVITY_LIST_VM/removeLocal: Success")
+                    self.appRouter.showToast(with: Toast(toastType: .successRemove, storageType: .remote))
                 case .failure(let error):
                     self.showError(error: error)
             }
         }
     }
     
-    private func deleteRemoteActivity(id: UUID) {
-        self.remoteDataStore.deleteSportActivity(id: id) { result in
+    private func deleteLocalActivity(id: UUID) {
+        self.localDataStore.delete(id: id) { result in
             switch result {
                 case .success(_):
-                    debugPrint("SPORT_ACTIVITY_LIST_VM/removeRemote: Success")
+                    self.appRouter.showToast(with: Toast(toastType: .successRemove, storageType: .local))
                 case .failure(let error):
                     self.showError(error: error)
             }

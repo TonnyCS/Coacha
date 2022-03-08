@@ -16,9 +16,20 @@ final class AppRouter: ObservableObject {
     
     @Published var currentPage: Page = .splash
     
-    public func setCurrentPage(to page: Page) {
+    @Published var showingToast: Bool = false
+    @Published var toast: Toast = Toast(toastType: .successAdd, storageType: .local)
+    
+    func setCurrentPage(to page: Page) {
         withAnimation {
             self.currentPage = page
+        }
+    }
+    
+    func showToast(with toast: Toast) {
+        self.toast = toast
+        
+        withAnimation {
+            self.showingToast = true
         }
     }
 }

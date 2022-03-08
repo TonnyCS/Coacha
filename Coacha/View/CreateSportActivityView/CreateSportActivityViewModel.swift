@@ -12,6 +12,7 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
     var viewDismissalModePublished = PassthroughSubject<Void, Never>()
     @ObservedObject var remoteDataStore: RemoteDataStore = RemoteDataStore()
     @ObservedObject var localDataStore: LocalDataStore = LocalDataStore()
+    @ObservedObject var appRouter: AppRouter = AppRouter()
     
     @Published var name: String = "" { didSet { self.checkForSaveButtonDisable() } }
     @Published var place: Place? { didSet { self.checkForSaveButtonDisable() } }
@@ -35,6 +36,7 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
             switch result {
                 case .success(_):
                     self.dismissView()
+                    self.appRouter.showToast(with: Toast(toastType: .successAdd, storageType: .remote))
                 case .failure(let error):
                     self.dismissLoading()
                     self.showError(error: error)
@@ -55,6 +57,7 @@ final class CreateSportActivityViewModel: CommonErrorHandlingViewModel {
             switch result {
                 case .success(_):
                     self.dismissView()
+                    self.appRouter.showToast(with: Toast(toastType: .successAdd, storageType: .local))
                 case .failure(let error):
                     self.dismissLoading()
                     self.showError(error: error)

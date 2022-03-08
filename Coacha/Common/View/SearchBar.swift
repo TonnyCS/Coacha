@@ -18,6 +18,7 @@ struct SearchBar: View {
                 .foregroundColor(R.color.alto)
             
             TextField("general.search".localized, text: self.$searchText)
+                .textInputAutocapitalization(.words)
                 .submitLabel(.search)
                 .onSubmit {
                     self.searchAction()

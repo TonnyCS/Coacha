@@ -11,6 +11,7 @@ struct CreateSportActivityView: View {
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var remoteDataStore: RemoteDataStore
     @EnvironmentObject var localDataStore: LocalDataStore
+    @EnvironmentObject var appRouter: AppRouter
     
     @StateObject var viewModel: CreateSportActivityViewModel
     
@@ -61,6 +62,7 @@ struct CreateSportActivityView: View {
         .onAppear {
             self.viewModel.remoteDataStore = self.remoteDataStore
             self.viewModel.localDataStore = self.localDataStore
+            self.viewModel.appRouter = self.appRouter
         }
         .onReceive(self.viewModel.viewDismissalModePublished, perform: { _ in
             self.presentationMode.wrappedValue.dismiss()

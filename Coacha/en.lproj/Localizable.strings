@@ -46,6 +46,10 @@
 "alert.sportActivity.remove.title" = "Removing activity";
 "alert.sportActivity.remove.subtitle" = "Are your sure you want to remove this activity? This action cannot be reversed";
 
+// MARK: - TOAST
+"toast.success.add" = "Activity successfully added!";
+"toast.success.remove" = "Activity successfully removed!";
+
 // MARK: - ERROR
 "error.generic.title" = "Error occurred!";
 "error.generic.message" = "Please try again later.";

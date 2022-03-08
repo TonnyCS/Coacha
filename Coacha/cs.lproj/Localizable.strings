@@ -46,6 +46,10 @@
 "alert.sportActivity.remove.title" = "Smazání aktivity";
 "alert.sportActivity.remove.subtitle" = "Opravdu chcete smazat vytvořenou aktivitu? Tuto akci nezle vrátit zpět";
 
+// MARK: - TOAST
+"toast.success.add" = "Aktivita byla úspěšně přídána!";
+"toast.success.remove" = "Aktivita byla úspěšně odebrána!";
+
 // MARK: - ERROR
 "error.generic.title" = "Došlo k chybě!";
 "error.generic.message" = "Zopakujte akci později";

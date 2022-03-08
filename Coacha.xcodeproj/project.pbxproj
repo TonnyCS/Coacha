@@ -60,6 +60,9 @@
 		6595784927D4FB170003B40F /* CLPlacemark+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595784827D4FB170003B40F /* CLPlacemark+.swift */; };
 		6595784C27D512680003B40F /* DateDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595784B27D512680003B40F /* DateDuration.swift */; };
 		6595784E27D51EE90003B40F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595784D27D51EE90003B40F /* SearchBar.swift */; };
+		6595785F27D68DF80003B40F /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595785E27D68DF80003B40F /* ToastView.swift */; };
+		6595786127D69E660003B40F /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595786027D69E660003B40F /* View+.swift */; };
+		6595786327D742270003B40F /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6595786227D742270003B40F /* Toast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +115,9 @@
 		6595784A27D503140003B40F /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6595784B27D512680003B40F /* DateDuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateDuration.swift; sourceTree = "<group>"; };
 		6595784D27D51EE90003B40F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		6595785E27D68DF80003B40F /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		6595786027D69E660003B40F /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		6595786227D742270003B40F /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,7 @@
 				6595781A27D2AEAA0003B40F /* Date+.swift */,
 				6595784227D4EDBD0003B40F /* Animation+.swift */,
 				6595784827D4FB170003B40F /* CLPlacemark+.swift */,
+				6595786027D69E660003B40F /* View+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +327,7 @@
 				6595781827D2A9A60003B40F /* ErrorWithCustomMessage.swift */,
 				6595783127D3A79C0003B40F /* Place.swift */,
 				6595784B27D512680003B40F /* DateDuration.swift */,
+				6595786227D742270003B40F /* Toast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -342,6 +350,7 @@
 		6595781527D2A8BD0003B40F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6595785D27D68DE70003B40F /* ToastView */,
 				6595781627D2A8C90003B40F /* LoadingView.swift */,
 				6595783C27D3D8990003B40F /* InteractableItemRow.swift */,
 				6595783E27D3D8B50003B40F /* NonExpandableItemRow.swift */,
@@ -375,6 +384,14 @@
 				6595783627D3B11B0003B40F /* SearchLocationViewModel.swift */,
 			);
 			path = SubView;
+			sourceTree = "<group>";
+		};
+		6595785D27D68DE70003B40F /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				6595785E27D68DF80003B40F /* ToastView.swift */,
+			);
+			path = ToastView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,6 +515,7 @@
 				659577CD27D24ECE0003B40F /* CoachaAppModel.swift in Sources */,
 				6595783927D3B8BE0003B40F /* FlatLinkStyle.swift in Sources */,
 				6595782927D2BB560003B40F /* SportActivityCD+CoreDataProperties.swift in Sources */,
+				6595786127D69E660003B40F /* View+.swift in Sources */,
 				6595781927D2A9A60003B40F /* ErrorWithCustomMessage.swift in Sources */,
 				659577E727D25B2D0003B40F /* ScaleableLinkStyle.swift in Sources */,
 				6595782527D2B75E0003B40F /* Persistence.swift in Sources */,
@@ -505,6 +523,7 @@
 				6595780A27D284E50003B40F /* SportActivity.swift in Sources */,
 				659577DE27D255030003B40F /* Resources.swift in Sources */,
 				659577C027D24EAA0003B40F /* SportActivityListView.swift in Sources */,
+				6595786327D742270003B40F /* Toast.swift in Sources */,
 				659577F127D25E1E0003B40F /* SplashViewModel.swift in Sources */,
 				6595783227D3A79C0003B40F /* Place.swift in Sources */,
 				659577BE27D24EAA0003B40F /* CoachaApp.swift in Sources */,
@@ -513,6 +532,7 @@
 				6595784927D4FB170003B40F /* CLPlacemark+.swift in Sources */,
 				659577EA27D25BB60003B40F /* Image+.swift in Sources */,
 				6595783027D3A76E0003B40F /* MapHelper.swift in Sources */,
+				6595785F27D68DF80003B40F /* ToastView.swift in Sources */,
 				659577EF27D25E150003B40F /* SplashView.swift in Sources */,
 				6595784327D4EDBD0003B40F /* Animation+.swift in Sources */,
 				6595781727D2A8C90003B40F /* LoadingView.swift in Sources */,

@@ -17,6 +17,8 @@ enum Resources {
         enum perm {
             /// WHITE | HEX: #FFFFFF
             static let white = Color("Perm_White")
+            /// BLACK | HEX: #000000
+            static let black = Color("Perm_Black")
             
             /// LIGHT_RED | L: HEX: #E5383B
             static let cinnabar = Color("Perm_Cinnabar")

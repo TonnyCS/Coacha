@@ -52,9 +52,7 @@ fileprivate struct LoginView_Content: View { //var
                         .regular10(R.color.perm.white)
                 }
                 
-                Button(action: {
-                    self.viewModel.login()
-                }) {
+                Button(action: self.viewModel.login) {
                     Text("login.button.title".localized)
                         .medium17(R.color.perm.cinnabar)
                         .padding(.all, 16)
