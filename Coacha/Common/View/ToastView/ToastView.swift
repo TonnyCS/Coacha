@@ -43,7 +43,7 @@ struct ToastView<Presenting: View>: View {
                 .commonBackground(R.color.whiteDMGray)
                 .padding(.horizontal, 16)
                 .transition(.slide)
-                .offset(x: 0, y: self.isPresented ? 0 : -100)
+                .offset(x: 0, y: self.isPresented ? 16 : -100)
                 
                 Spacer()
             }
